@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { EnviarDatos } from '../services/api';
 import { useHistory } from 'react-router-dom';
 
 
@@ -13,6 +12,7 @@ const Formulario = () => {
     lugarExp: '',
     fechaNac: '',
     lugarNac: '',
+    nacionalidad: '',
     genero: '',
     tipoSangre: '',
     grupoEtnico: '',
@@ -26,11 +26,17 @@ const Formulario = () => {
     numHijos: '',
     tienePersonasCargo: '',
     numeroPersonasCargo: '',
+    escolaridad: '',
+  });
+
+  const [disabledFields, setDisabledFields] = useState({
+    numHijos: false,
+    numeroPersonasCargo: false,
   });
 
   const history = useHistory();
-  const [, setResultado] = useState(null);
-  const [, setError] = useState(null);
+  /* const [, setResultado] = useState(null);
+  const [, setError] = useState(null); */
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -42,9 +48,10 @@ const Formulario = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    localStorage.setItem('formData', JSON.stringify(formData));
+    history.push('/Form2');
     console.log(formData)
-    history.push('/Form2')
-      const { customHeader, ...data } = formData;
+      /* const { customHeader, ...data } = formData;
       const headers = {
         'Custom-Header': customHeader
       };
@@ -56,7 +63,7 @@ const Formulario = () => {
       } catch (error) {
         setError(error);
         setResultado(null);
-      }
+      } */
 
   };
 
@@ -78,9 +85,32 @@ const Formulario = () => {
       ...formData,
       [name]: value,
     });
+    const fieldsToDisable = {
+      tieneHijos: 'numHijos',
+      tienePersonasCargo: 'numeroPersonasCargo',
+    };
+
+    if (fieldsToDisable[name]) {
+      setDisabledFields((prevDisabledFields) => ({
+        ...prevDisabledFields,
+        [fieldsToDisable[name]]: value === 'No',
+      }));
+
+      if (value === 'No') {
+        setFormData({
+          ...formData,
+          [name]: value,
+          [fieldsToDisable[name]]: '',
+        });
+      }
+    }
   };
+
   return (
     <form className="formulario" onSubmit={handleSubmit}>
+      <div className='container_title_form'>
+      <label className='Title_form' htmlFor="Form1">INFORMACIÓN PERSONAL</label>
+      </div>
       <div className="form-group">
         <label htmlFor="nombComp">Nombre completo:</label>
         <input
@@ -165,6 +195,18 @@ const Formulario = () => {
         />
       </div>
       <div className="form-group">
+        <label htmlFor="nacionalidad">Nacionalidad:</label>
+        <input
+          type="text"
+          id="nacionalidad"
+          name="nacionalidad"
+          value={formData.nacionalidad}
+          onChange={handleChange}
+          required
+          autoComplete="off"
+        />
+      </div>
+      <div className="form-group">
         <label htmlFor="lugarNac">Lugar de nacimiento:</label>
         <input
           type="text"
@@ -177,7 +219,7 @@ const Formulario = () => {
         />
       </div>
       <div className="form-group">
-        <label htmlFor="genero">genero:</label>
+        <label htmlFor="genero">Genero:</label>
         <select
           id="genero"
           name="genero"
@@ -186,9 +228,10 @@ const Formulario = () => {
           required
           autoComplete="off"
         >
-          <option value="" disabled hidden>Seleccione</option>
+          <option value="" disabled hidden>Seleccione</option>          
           <option value="Femenino">Femenino</option>
           <option value="Masculino">Masculino</option>
+          <option value="Otro">Otro</option>
         </select>
       </div>
       <div className="form-group">
@@ -296,7 +339,7 @@ const Formulario = () => {
         </select>
       </div>
       <div className="form-group">
-        <label htmlFor="cabeFlia">Cabeza de familia:</label>
+        <label htmlFor="cabeFlia">¿Eres cabeza de familia?:</label>
         <select
           id="cabeFlia"
           name="cabeFlia"
@@ -349,7 +392,8 @@ const Formulario = () => {
           name="numHijos"
           value={formData.numHijos}
           onChange={handleSelectChange}
-          required
+          disabled={disabledFields.numHijos}
+          required={!disabledFields.numHijos}
           autoComplete="off"
         >
           <option value="" disabled hidden>Seleccione</option>
@@ -360,7 +404,7 @@ const Formulario = () => {
         </select>
       </div>
       <div className="form-group">
-        <label htmlFor="tienePersonasCargo">Tiene personas a cargo:</label>
+        <label htmlFor="tienePersonasCargo">¿Tienes personas a cargo?:</label>
         <select
           id="tienePersonasCargo"
           name="tienePersonasCargo"
@@ -381,7 +425,8 @@ const Formulario = () => {
           name="numeroPersonasCargo"
           value={formData.numeroPersonasCargo}
           onChange={handleSelectChange}
-          required
+          disabled={disabledFields.numeroPersonasCargo}
+          required={!disabledFields.numeroPersonasCargo}
           autoComplete="off"
         >
           <option value="" disabled hidden>Seleccione</option>
@@ -389,6 +434,28 @@ const Formulario = () => {
           <option value="2">2</option>
           <option value="3">3</option>
           <option value="4 o mas">4 o mas</option>
+        </select>
+      </div>
+      <div className="form-group">
+        <label htmlFor="escolaridad">Escolaridad:</label>
+        <select
+          id="escolaridad"
+          name="escolaridad"
+          value={formData.escolaridad}
+          onChange={handleSelectChange}
+          required
+          autoComplete="off"
+        >
+          <option value="" disabled hidden>Seleccione</option>
+          <option value="Primaria">Primaria</option>
+          <option value="Secundaria">Secundaria</option>
+          <option value="Técnico">Técnico</option>
+          <option value="Tecnología">Tecnología</option>
+          <option value="Pregrado">Pregrado</option>
+          <option value="Posgrado">Posgrado</option>
+          <option value="Especialización">Especialización</option>
+          <option value="Maestría">Maestría</option>
+          <option value="Doctorado">Doctorado</option>
         </select>
       </div>
       <div className='button-container'>

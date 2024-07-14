@@ -1,27 +1,38 @@
 /* Formulario.css */
 .formulario {
-    max-width: 1100px;
+    max-width: 1290px;
     margin: 30px auto;
     padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 20px;
+    border: 1px solid #0a0a0a;
+    border-radius: 30px;
     background-color: #f9f9f9;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-wrap: wrap;
+  }
+
+  .container_title_form{
+    width: 100%; 
+    text-align: left;
+    margin-bottom: 20px; 
+  }
+
+  .Title_form{
+    margin: 2%;
   }
   
   .form-group {
     margin-bottom: 15px;
     margin: 10px;
     margin-left: 60px;
-    width: 180px;
+    width: 200px;
   }
   
   .form-group label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
+    font-size: 12px;
   }
   
   .form-group input,
@@ -58,7 +69,7 @@
     padding: 10px;
     border: none;
     border-radius: 5px;
-    background-color: #5b5b5b;
+    background-color: #169d95;
     color: white;
     font-size: 16px;
     cursor: pointer;
@@ -67,6 +78,72 @@
   }
   
   .sig_btn:hover {
-    background-color: rgb(67, 64, 64);
+    background-color: #107b74;
   }
   
+
+/* Estilos para tabla con encabezado fijo */
+.table-container {
+  overflow-x: auto; /* Permite desplazamiento horizontal si la tabla es demasiado ancha */
+  margin-left: 12%;
+}
+
+.table {
+  margin-top: 4%;
+  width: 100%;
+}
+
+.table th,
+.table td {
+  padding: 10px; /* Espaciado interno de las celdas */
+  text-align: center; /* Alineación del texto al centro */
+  border: 1px solid #dddcdc;
+  border-radius: 10px 10px 10px 10px;
+  width: 90px; /* Ancho fijo para las celdas */
+  white-space: nowrap; /* Evitar salto de línea */
+  overflow: hidden; /* Ocultar el contenido que desborda */
+  text-overflow: ellipsis; /* Mostrar puntos suspensivos cuando el texto desborda */
+  font-size: x-small;
+}
+
+.table .td_thspecial,
+.table .td_thspecial {
+  padding: 10px; /* Espaciado interno de las celdas */
+  text-align: center; /* Alineación del texto al centro */
+  border: 1px solid #dddcdc;
+  border-radius: 10px 10px 10px 10px;
+  width: 90px; /* Ancho fijo para las celdas */
+  white-space: nowrap; /* Evitar salto de línea */
+  overflow: hidden; /* Ocultar el contenido que desborda */
+  text-overflow: ellipsis; /* Mostrar puntos suspensivos cuando el texto desborda */
+  font-size: x-small;
+}
+
+.table button {
+  background-color: rgb(249, 134, 134);
+  border-radius: 5px 5px 5px 5px ;
+  color: white;
+  font-size: 12px;
+  cursor: pointer;
+  border: none;
+  width: 100%;
+}
+
+.table button:hover{
+  background-color: rgb(245, 94, 94);
+  box-shadow: #5b5b5b;
+} 
+
+.table th {
+  background-color: #f2f2f2; /* Color de fondo para las cabeceras */
+  position: sticky;
+  top: 2; /* Fija la cabecera en la parte superior */
+  z-index: 10; /* Asegura que la cabecera esté por encima del contenido de la tabla */
+}
+
+.table td {
+  vertical-align: top; /* Alineación vertical del contenido de las celdas */
+  font-size: smaller;
+  opacity: 3.5;
+  color: rgb(132, 131, 131);
+}

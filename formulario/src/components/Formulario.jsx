@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { EnviarDatos } from "../services/api";
 
 
 
@@ -35,8 +36,6 @@ const Formulario = () => {
   });
 
   const history = useHistory();
-  /* const [, setResultado] = useState(null);
-  const [, setError] = useState(null); */
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -46,24 +45,26 @@ const Formulario = () => {
     }));
   };
 
+  const [setResultado] = useState(null);
+  const [setError] = useState(null);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     localStorage.setItem('formData', JSON.stringify(formData));
     history.push('/Form2');
-    console.log(formData)
-      /* const { customHeader, ...data } = formData;
-      const headers = {
+    const { customHeader, ...data } = formData;
+    const headers = {
         'Custom-Header': customHeader
-      };
-    
-      try {
+    };
+
+    try {
         const response = await EnviarDatos(data, headers);
         setResultado(response);
         setError(null);
-      } catch (error) {
+    } catch (error) {
         setError(error);
         setResultado(null);
-      } */
+    }
 
   };
 
@@ -458,7 +459,7 @@ const Formulario = () => {
           <option value="Doctorado">Doctorado</option>
         </select>
       </div>
-      <div className='button-container'>
+      <div className='button-container_one'>
         <button type='submit' className='sig_btn'>Siguiente</button>
       </div>
     </form>

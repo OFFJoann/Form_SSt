@@ -186,7 +186,9 @@ const Form3 = () => {
         });
     };
     /*--------------------------------------------------------------------------------------------*/
-
+    const buttonatras = async (e) => {
+        history.push("/form2")
+      }
 
     return (
         <div>
@@ -477,6 +479,7 @@ const Form3 = () => {
                     />
                 </div>
                 <div className='button-container'>
+                    <button type='submit' className='sig_btn' onClick={buttonatras}>Atras</button>
                     <button type='submit' className='sig_btn'>Siguiente</button>
                 </div>
             </form>

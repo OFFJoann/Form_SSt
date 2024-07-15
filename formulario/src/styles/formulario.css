@@ -3,10 +3,10 @@
     max-width: 1290px;
     margin: 30px auto;
     padding: 20px;
-    border: 1px solid #0a0a0a;
     border-radius: 30px;
     background-color: #f9f9f9;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    box-shadow: 3px 3px 5px 5px #fd0d0d50;
     display: flex;
     flex-wrap: wrap;
   }
@@ -26,6 +26,40 @@
     margin: 10px;
     margin-left: 60px;
     width: 200px;
+  }
+
+  .form-groupll {
+    margin-bottom: 15px;
+    margin: 10px;
+    margin-left: 100px;
+    width: 250px;
+  }
+
+  .form-groupll label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 12px;
+  }
+
+  .form-groupll input,
+  .form-groupll textarea {
+    width: 130%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    outline: none;
+    border-color: #ccc;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .form-groupll select {
+    width: 130%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
   }
   
   .form-group label {
@@ -59,26 +93,34 @@
   .button-container {
     width: 100%;
     display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+  }
+
+  .button-container_one {
+    width: 100%;
+    display: flex;
     justify-content: flex-end;
     margin: 10px 0;
   }
+
   
   .sig_btn {
     display: block;
-    width: 30%;
+    width: 28%;
     padding: 10px;
     border: none;
     border-radius: 5px;
-    background-color: #169d95;
+    background-color: #d93f3f;
     color: white;
-    font-size: 16px;
+    font-size: 12px;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
   }
   
   .sig_btn:hover {
-    background-color: #107b74;
+    background-color: #f15d5d;
   }
   
 
@@ -146,4 +188,42 @@
   font-size: smaller;
   opacity: 3.5;
   color: rgb(132, 131, 131);
+}
+
+.container_footer {
+  font-size: small;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+  color: rgb(0, 0, 0);
+}
+
+.container_header {
+  width: 100%;
+  height: 9%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  box-shadow: 0 5px 10px #f3424250;
+  padding: 0 20px; /* Añade un padding opcional para espaciar los elementos internos */
+}
+
+.container_img_header {
+  flex: 0 0 auto; /* Hace que este div no crezca y mantenga su tamaño según el contenido */
+}
+
+.container_img_header img {
+  width: 90px;
+  margin-right: 10px; /* Ajusta el margen derecho para separar la imagen del título */
+}
+
+.container_title {
+  flex: 1; /* Permite que este div ocupe todo el espacio restante */
+}
+
+.container_title h1 {
+  text-align: center;
+  margin-right: 11%; /* Asegura que no haya margen alrededor del título */
 }

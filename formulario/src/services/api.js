@@ -15,7 +15,7 @@ export const Obtenerdatos = async () => {
 };
 
 
-const ApiURL = 'http://192.168.7.185:8080/api/personas';
+const ApiURL = 'http://192.168.7.185:8080/api/personas/createOrUpdate';
 
 export const EnviarDatos = async (data, headers) => {
     try {
@@ -34,7 +34,13 @@ export const EnviarDatos = async (data, headers) => {
             throw new Error(`Error al enviar datos: ${response.statusText}`);
         }
 
- new Error('Respuesta vacía del servidor');
+        const responseData = await response.json();
+
+        if (!responseData) {
+            throw new Error('Respuesta vacía del servidor');
+        }
+
+        return responseData;
     } catch (error) {
         console.error('No se pudo enviar data a la API:', error);
         throw error;

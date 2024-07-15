@@ -26,6 +26,10 @@ const Form2 = () => {
     oficioescolaridad_grpfam: '',
     contacto_grpfam: '',
   });
+
+  const [disabledFields, setDisabledFields] = useState({
+    tipodisca_grpfam: false,
+  });
   /*--------------------------------------------------------------------------------------------*/
 
   const history = useHistory();
@@ -41,26 +45,10 @@ const Form2 = () => {
   const handleSubmitform2 = async (e) => {
     e.preventDefault();
 
-    console.log(newFormData)
-
     const storedFormData = JSON.parse(localStorage.getItem('formData'));
 
     localStorage.setItem('combinedData', JSON.stringify({ ...storedFormData, ...newFormData }));
     history.push('/Form3');
-
-    setnewFormData({
-      munResidencia: '',
-      barrio: '',
-      dirResidencia: '',
-      estrato: '',
-      zonaUbi: '',
-      tipoVivienda: '',
-      hogarComp: '',
-      servInternet: '',
-      grupo_familiar: '',
-      personasdisca_grpfam: '',
-      tipodisca_grpfam: '',
-    });
 
   };
 
@@ -79,6 +67,24 @@ const Form2 = () => {
       ...newFormData,
       [name]: value,
     });
+    const fieldsToDisable = {
+      personasdisca_grpfam: 'tipodisca_grpfam',
+    };
+
+    if (fieldsToDisable[name]) {
+      setDisabledFields((prevDisabledFields) => ({
+        ...prevDisabledFields,
+        [fieldsToDisable[name]]: value === 'No',
+      }));
+
+      if (value === 'No') {
+        setnewFormData({
+          ...newFormData,
+          [name]: value,
+          [fieldsToDisable[name]]: '',
+        });
+      }
+    }
   };
 
 
@@ -136,6 +142,10 @@ const Form2 = () => {
       [name]: value,
     });
   };
+
+  const buttonatras = async (e) => {
+    history.push("/")
+  }
 
 
   return (
@@ -258,7 +268,7 @@ const Form2 = () => {
         </div>
       </form>
       <form className='formulario' onSubmit={handleSubmitform2_1}>
-      <div className="form-group">
+        <div className="form-group">
           <label htmlFor="personasdisca_grpfam">¿Vive con personas con discapacidad?:</label>
           <select
             id="personasdisca_grpfam"
@@ -275,15 +285,22 @@ const Form2 = () => {
         </div>
         <div className="form-group">
           <label htmlFor="tipodisca_grpfam">¿Que tipo de discapacidad tiene la persona?:</label>
-          <input
-            type="text"
+          <select
             id="tipodisca_grpfam"
             name="tipodisca_grpfam"
             value={newFormData.tipodisca_grpfam}
-            onChange={handleChangeform2}
-            required
+            onChange={handleSelectChangeform2}
+            disabled={disabledFields.tipodisca_grpfam}
+            required={!disabledFields.tipodisca_grpfam}
             autoComplete="off"
-          />
+          >
+            <option value="" disabled hidden>Seleccione</option>
+            <option value="Sensorial">Sensorial</option>
+            <option value="Mental">Mental</option>
+            <option value="Fisica">Fisica</option>
+            <option value="Multiple">Multiple</option>
+            <option value="Otras">Otras</option>
+          </select>
         </div>
       </form>
       <form className="formulario" onSubmit={handleSubmitform2}>
@@ -409,6 +426,7 @@ const Form2 = () => {
           </select>
         </div>
         <div className='button-container'>
+          <button type='submit' className='sig_btn' onClick={buttonatras}>Atras</button>
           <button type='submit' className='sig_btn'>Siguiente</button>
         </div>
       </form>

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { EnviarDatos } from "../services/api";
 
 
 
@@ -45,14 +44,15 @@ const Formulario = () => {
     }));
   };
 
-  const [setResultado] = useState(null);
-  const [setError] = useState(null);
+  /*const [setResultado] = useState(null);
+  const [setError] = useState(null);*/
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     localStorage.setItem('formData', JSON.stringify(formData));
+    console.log(formData)
     history.push('/Form2');
-    const { customHeader, ...data } = formData;
+    /*const { customHeader, ...data } = formData;
     const headers = {
         'Custom-Header': customHeader
     };
@@ -64,7 +64,7 @@ const Formulario = () => {
     } catch (error) {
         setError(error);
         setResultado(null);
-    }
+    }*/
 
   };
 
@@ -136,7 +136,7 @@ const Formulario = () => {
         >
           <option value="" disabled hidden>Seleccione</option>
           <option value="Cedula cuidadana">Cedula cuidadana</option>
-          <option value="Cedula de extrangeria">Cedula de extrangeria</option>
+          <option value="Cedula de extrangeria">Cedula de extranjeria</option>
         </select>
       </div>
       <div className="form-group">
@@ -288,7 +288,8 @@ const Formulario = () => {
           onInput={(e) => {
             e.target.value = e.target.value.replace(/\D/g, '');
           }}
-          pattern="\d*"
+          maxLength="10"
+          pattern="\d{10}"
           autoComplete="off"
         />
       </div>
@@ -301,11 +302,11 @@ const Formulario = () => {
           name="numTel"
           value={formData.numTel}
           onChange={handleChange}
-          required
           onInput={(e) => {
             e.target.value = e.target.value.replace(/\D/g, '');
           }}
-          pattern="\d*"
+          maxLength="7"
+          pattern="\d{7}"
           autoComplete="off"
         />
       </div>

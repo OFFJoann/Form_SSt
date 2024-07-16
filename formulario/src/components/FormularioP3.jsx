@@ -68,12 +68,13 @@ const Form3 = () => {
 
     const handleSubmitforms3 = async (e) => {
         e.preventDefault();
-      };
+    };
 
     const handleSubmitform3 = async (e) => {
         e.preventDefault();
         const storedFormData = JSON.parse(localStorage.getItem('combinedData'));
         localStorage.setItem('combinedDataform3', JSON.stringify({ ...storedFormData, ...dataForm3 }));
+        console.log(dataForm3)
         history.push('/Form4');
     };
 
@@ -188,154 +189,11 @@ const Form3 = () => {
     /*--------------------------------------------------------------------------------------------*/
     const buttonatras = async (e) => {
         history.push("/form2")
-      }
+    }
 
     return (
         <div>
-            <form className="formulario" onSubmit={handleSubmitforms3}>
-                <div>
-                    <div className='container_title_form'>
-                        <label className='Title_form' htmlFor="Form1">EXPERIENCIA LABORAL</label>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="empresa">Empresa:</label>
-                        <input
-                            type="text"
-                            id="empresa"
-                            name="empresa"
-                            value={currentExperience.empresa}
-                            onChange={handleChangeExperience}
-                            autoComplete="off"
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="cargo">Cargo:</label>
-                        <input
-                            type="text"
-                            id="cargo"
-                            name="cargo"
-                            value={currentExperience.cargo}
-                            onChange={handleChangeExperience}
-                            autoComplete="off"
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="duracion">Duración:</label>
-                        <input
-                            type="text"
-                            id="duracion"
-                            name="duracion"
-                            value={currentExperience.duracion}
-                            onChange={handleChangeExperience}
-                            autoComplete="off"
-                        />
-                    </div>
-                    <button className='sig_btn' onClick={handleAddExperience} type="button">Añadir</button>
-                </div>
-                <div className="table-container">
-                    <table className="table">
-                        <thead>
-                            <tr>
-                                <th>Empresa</th>
-                                <th>Cargo</th>
-                                <th>Duración</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody >
-                            {dataForm3.exp_otras_empresas.map((experience, index) => (
-                                <tr key={index}>
-                                    <td>{experience.empresa}</td>
-                                    <td>{experience.cargo}</td>
-                                    <td>{experience.duracion}</td>
-                                    <td>
-                                        <button onClick={() => handleDeleteItem(index)}><img src={imgtrash} alt="My SVG" /></button>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
-            </form>
-            <form className="formulario" onSubmit={handleSubmitforms3}>
-                <div>
-                    <div className='container_title_form'>
-                        <label className='Title_form' htmlFor="Form1">HABILIDADES Y COMPETENCIA</label>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="habilidad_o_competencia">Habilidad o competencia:</label>
-                        <input
-                            type="habilidad_o_competencia"
-                            id="habilidad_o_competencia"
-                            name="habilidad_o_competencia"
-                            value={currentHabiliComp.habilidad_o_competencia}
-                            onChange={handleChangeHabilicomp}
-                            autoComplete="off"
-                        />
-                    </div>
-                    <button className='sig_btn' onClick={handleAddHabilicomp} type="button">Añadir</button>
-                </div>
-                <div className="table-container">
-                    <table className="table">
-                        <thead>
-                            <tr>
-                                <th>Habilidad o competenecia</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody >
-                            {dataForm3.habilidades_competencias.map((habilidades_competencias, index) => (
-                                <tr key={index}>
-                                    <td>{habilidades_competencias.habilidad_o_competencia}</td>
-                                    <td>
-                                        <button onClick={() => handelDeleteItemHabiliComp(index)}><img src={imgtrash} alt="My SVG" /></button>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
-            </form>
-            <form className="formulario" onSubmit={handleSubmitforms3}>
-                <div>
-                    <div className='container_title_form'>
-                        <label className='Title_form' htmlFor="Form1">¿QUE IDIOMAS HABLAS?</label>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="idioma">Idioma:</label>
-                        <input
-                            type="text"
-                            id="idioma"
-                            name="idioma"
-                            value={currentIdiomas.idioma}
-                            onChange={handleChangeIdioma}
-                            autoComplete="off"
-                        />
-                    </div>
-                    <button className='sig_btn' onClick={handleAddIdioma} type="button">Añadir</button>
-                </div>
-                <div className="table-container">
-                    <table className="table">
-                        <thead>
-                            <tr>
-                                <th>Idioma</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody >
-                            {dataForm3.idiomas.map((idiomas, index) => (
-                                <tr key={index}>
-                                    <td>{idiomas.idioma}</td>
-                                    <td>
-                                        <button onClick={() => handleDeleteItemidioma(index)}><img src={imgtrash} alt="My SVG" /></button>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
-            </form>
-            <form className="formulario" onSubmit={handleSubmitform3}>
+                        <form className="formulario" onSubmit={handleSubmitforms3}>
                 <div className='container_title_form'>
                     <label className='Title_form' htmlFor="Form1">INFORMACIÓN LABORAL</label>
                 </div>
@@ -477,6 +335,149 @@ const Form3 = () => {
                         required
                         autoComplete="off"
                     />
+                </div>
+            </form>
+            <form className="formulario" onSubmit={handleSubmitforms3}>
+                <div>
+                    <div className='container_title_form'>
+                        <label className='Title_form' htmlFor="Form1">EXPERIENCIA LABORAL</label>
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="empresa">Empresa:</label>
+                        <input
+                            type="text"
+                            id="empresa"
+                            name="empresa"
+                            value={currentExperience.empresa}
+                            onChange={handleChangeExperience}
+                            autoComplete="off"
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="cargo">Cargo:</label>
+                        <input
+                            type="text"
+                            id="cargo"
+                            name="cargo"
+                            value={currentExperience.cargo}
+                            onChange={handleChangeExperience}
+                            autoComplete="off"
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="duracion">Duración:</label>
+                        <input
+                            type="text"
+                            id="duracion"
+                            name="duracion"
+                            value={currentExperience.duracion}
+                            onChange={handleChangeExperience}
+                            autoComplete="off"
+                        />
+                    </div>
+                    <button className='sig_btn' onClick={handleAddExperience} type="button">Añadir</button>
+                </div>
+                <div className="table-container">
+                    <table className="table">
+                        <thead>
+                            <tr>
+                                <th>Empresa</th>
+                                <th>Cargo</th>
+                                <th>Duración</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody >
+                            {dataForm3.exp_otras_empresas.map((experience, index) => (
+                                <tr key={index}>
+                                    <td>{experience.empresa}</td>
+                                    <td>{experience.cargo}</td>
+                                    <td>{experience.duracion}</td>
+                                    <td>
+                                        <button onClick={() => handleDeleteItem(index)}><img src={imgtrash} alt="My SVG" /></button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+            <form className="formulario" onSubmit={handleSubmitforms3}>
+                <div>
+                    <div className='container_title_form'>
+                        <label className='Title_form' htmlFor="Form1">HABILIDADES Y COMPETENCIA</label>
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="habilidad_o_competencia">Habilidad o competencia:</label>
+                        <input
+                            type="habilidad_o_competencia"
+                            id="habilidad_o_competencia"
+                            name="habilidad_o_competencia"
+                            value={currentHabiliComp.habilidad_o_competencia}
+                            onChange={handleChangeHabilicomp}
+                            autoComplete="off"
+                        />
+                    </div>
+                    <button className='sig_btn' onClick={handleAddHabilicomp} type="button">Añadir</button>
+                </div>
+                <div className="table-container">
+                    <table className="table">
+                        <thead>
+                            <tr>
+                                <th>Habilidad o competenecia</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody >
+                            {dataForm3.habilidades_competencias.map((habilidades_competencias, index) => (
+                                <tr key={index}>
+                                    <td>{habilidades_competencias.habilidad_o_competencia}</td>
+                                    <td>
+                                        <button onClick={() => handelDeleteItemHabiliComp(index)}><img src={imgtrash} alt="My SVG" /></button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </form>         
+            <form className="formulario" onSubmit={handleSubmitform3}>
+                <div>
+                    <div className='container_title_form'>
+                        <label className='Title_form' htmlFor="Form1">¿QUE IDIOMAS HABLAS?</label>
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="idioma">Idioma:</label>
+                        <input
+                            type="text"
+                            id="idioma"
+                            name="idioma"
+                            value={currentIdiomas.idioma}
+                            onChange={handleChangeIdioma}
+                            autoComplete="off"
+                        />
+                    </div>
+                    <button className='sig_btn' onClick={handleAddIdioma} type="button">Añadir</button>
+                </div>
+                <div className="table-container">
+                    <table className="table">
+                        <thead>
+                            <tr>
+                                <th>Idioma</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody >
+                            {dataForm3.idiomas.map((idiomas, index) => (
+                                <tr key={index}>
+                                    <td>{idiomas.idioma}</td>
+                                    <td>
+                                        <button onClick={() => handleDeleteItemidioma(index)}><img src={imgtrash} alt="My SVG" /></button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
                 </div>
                 <div className='button-container'>
                     <button type='submit' className='sig_btn' onClick={buttonatras}>Atras</button>

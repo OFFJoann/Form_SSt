@@ -48,6 +48,7 @@ const Form2 = () => {
     const storedFormData = JSON.parse(localStorage.getItem('formData'));
 
     localStorage.setItem('combinedData', JSON.stringify({ ...storedFormData, ...newFormData }));
+    console.log(newFormData)
     history.push('/Form3');
 
   };
@@ -150,160 +151,7 @@ const Form2 = () => {
 
   return (
     <div>
-      <form className="formulario" onSubmit={handleSubmitforms2}>
-        <div>
-          <div className='container_title_form'>
-            <label className='Title_form' htmlFor="Form1">GRUPO FAMILIAR</label>
-          </div>
-          <div className="form-group">
-            <label htmlFor="nombre_grpfam">Nombre:</label>
-            <input
-              type="text"
-              id="nombre_grpfam"
-              name="nombre_grpfam"
-              value={currentgrpfam.nombre_grpfam}
-              onChange={handleChangegrpfam}
-              autoComplete="off"
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="tipdoc_grpfam">Tipo de documento:</label>
-            <select
-              id="tipdoc_grpfam"
-              name="tipdoc_grpfam"
-              value={currentgrpfam.tipdoc_grpfam}
-              onChange={handleSelectChangeform2ext}
-              autoComplete="off"
-            >
-              <option value="" disabled hidden>Seleccione</option>
-              <option value="Cedula cuidadana">Cedula cuidadana</option>
-              <option value="Cedula extrangera">Cedula extrangera</option>
-            </select>
-          </div>
-          <div className="form-group">
-            <label htmlFor="numdoc_grpfem"># de documento:</label>
-            <input
-              placeholder='#'
-              type="tel"
-              id="numdoc_grpfem"
-              name="numdoc_grpfem"
-              value={currentgrpfam.numdoc_grpfem}
-              onChange={handleChangegrpfam}
-              onInput={(e) => {
-                e.target.value = e.target.value.replace(/\D/g, '');
-              }}
-              pattern="\d*"
-              autoComplete="off"
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="paren_grpfam">Parentesco:</label>
-            <input
-              type="text"
-              id="paren_grpfam"
-              name="paren_grpfam"
-              value={currentgrpfam.paren_grpfam}
-              onChange={handleChangegrpfam}
-              autoComplete="off"
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="oficioescolaridad_grpfam">Oficio/Escolaridad:</label>
-            <input
-              type="text"
-              id="oficioescolaridad_grpfam"
-              name="oficioescolaridad_grpfam"
-              value={currentgrpfam.oficioescolaridad_grpfam}
-              onChange={handleChangegrpfam}
-              autoComplete="off"
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="contacto_grpfam">Contacto:</label>
-            <input
-              placeholder='(+57)'
-              type="tel"
-              id="contacto_grpfam"
-              name="contacto_grpfam"
-              value={currentgrpfam.contacto_grpfam}
-              onChange={handleChangegrpfam}
-              onInput={(e) => {
-                e.target.value = e.target.value.replace(/\D/g, '');
-              }}
-              pattern="\d*"
-              autoComplete="off"
-            />
-          </div>
-          <button className='sig_btn' onClick={handleAddHabilicomp} type="button">Añadir</button>
-        </div>
-        <div className="table-container">
-          <table className="table">
-            <thead>
-              <tr>
-                <th className='td_thspecial'>Nombre</th>
-                <th className='td_thspecial'>Tipo de documento</th>
-                <th className='td_thspecial'># de documento</th>
-                <th className='td_thspecial'>Parentesco</th>
-                <th className='td_thspecial'>Oficio/Escolaridad</th>
-                <th className='td_thspecial'>Contacto</th>
-                <th className='td_thspecial'></th>
-              </tr>
-            </thead>
-            <tbody >
-              {newFormData.grupo_familiar.map((grpfam, index) => (
-                <tr key={index}>
-                  <td className='td_thspecial'>{grpfam.nombre_grpfam}</td>
-                  <td className='td_thspecial'>{grpfam.tipdoc_grpfam}</td>
-                  <td className='td_thspecial'>{grpfam.numdoc_grpfem}</td>
-                  <td className='td_thspecial'>{grpfam.paren_grpfam}</td>
-                  <td className='td_thspecial'>{grpfam.oficioescolaridad_grpfam}</td>
-                  <td className='td_thspecial'>{grpfam.contacto_grpfam}</td>
-                  <td>
-                    <button onClick={() => handelDeleteItemgrpfam(index)}><img src={imgtrash} alt="My SVG" /></button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </form>
-      <form className='formulario' onSubmit={handleSubmitform2_1}>
-        <div className="form-group">
-          <label htmlFor="personasdisca_grpfam">¿Vive con personas con discapacidad?:</label>
-          <select
-            id="personasdisca_grpfam"
-            name="personasdisca_grpfam"
-            value={newFormData.personasdisca_grpfam}
-            onChange={handleSelectChangeform2}
-            required
-            autoComplete="off"
-          >
-            <option value="" disabled hidden>Seleccione</option>
-            <option value="Si">Si</option>
-            <option value="No">No</option>
-          </select>
-        </div>
-        <div className="form-group">
-          <label htmlFor="tipodisca_grpfam">¿Que tipo de discapacidad tiene la persona?:</label>
-          <select
-            id="tipodisca_grpfam"
-            name="tipodisca_grpfam"
-            value={newFormData.tipodisca_grpfam}
-            onChange={handleSelectChangeform2}
-            disabled={disabledFields.tipodisca_grpfam}
-            required={!disabledFields.tipodisca_grpfam}
-            autoComplete="off"
-          >
-            <option value="" disabled hidden>Seleccione</option>
-            <option value="Sensorial">Sensorial</option>
-            <option value="Mental">Mental</option>
-            <option value="Fisica">Fisica</option>
-            <option value="Multiple">Multiple</option>
-            <option value="Otras">Otras</option>
-          </select>
-        </div>
-      </form>
-      <form className="formulario" onSubmit={handleSubmitform2}>
+      <form className="formulario" onSubmit={handleSubmitform2_1}>
         <div className='container_title_form'>
           <label className='Title_form' htmlFor="Form1">INFORMACIÓN DE VIVIENDA</label>
         </div>
@@ -332,7 +180,7 @@ const Form2 = () => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="dirResidencia">Direccion de residencia:</label>
+          <label htmlFor="dirResidencia">Dirección de residencia:</label>
           <input
             placeholder='Cll, Cr, # '
             type="text"
@@ -423,6 +271,162 @@ const Form2 = () => {
             <option value="" disabled hidden>Seleccione</option>
             <option value="Si">Si</option>
             <option value="No">No</option>
+          </select>
+        </div>
+      </form>
+      <form className="formulario" onSubmit={handleSubmitforms2}>
+        <div>
+          <div className='container_title_form'>
+            <label className='Title_form' htmlFor="Form1">GRUPO FAMILIAR</label>
+          </div>
+          <div className="form-group">
+            <label htmlFor="nombre_grpfam">Nombre:</label>
+            <input
+              type="text"
+              id="nombre_grpfam"
+              name="nombre_grpfam"
+              value={currentgrpfam.nombre_grpfam}
+              onChange={handleChangegrpfam}
+              autoComplete="off"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="tipdoc_grpfam">Tipo de documento:</label>
+            <select
+              id="tipdoc_grpfam"
+              name="tipdoc_grpfam"
+              value={currentgrpfam.tipdoc_grpfam}
+              onChange={handleSelectChangeform2ext}
+              autoComplete="off"
+            >
+              <option value="" disabled hidden>Seleccione</option>
+              <option value="Cedula cuidadana">Cedula cuidadana</option>
+              <option value="Cedula extrangera">Cedula extranjera</option>
+              <option value="Tarjeta de identidad">Tarjeta de identidad</option>
+              <option value="Registro civil">Registro civil</option>
+            </select>
+          </div>
+          <div className="form-group">
+            <label htmlFor="numdoc_grpfem"># de documento:</label>
+            <input
+              placeholder='#'
+              type="tel"
+              id="numdoc_grpfem"
+              name="numdoc_grpfem"
+              value={currentgrpfam.numdoc_grpfem}
+              onChange={handleChangegrpfam}
+              onInput={(e) => {
+                e.target.value = e.target.value.replace(/\D/g, '');
+              }}
+              pattern="\d*"
+              autoComplete="off"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="paren_grpfam">Parentesco:</label>
+            <input
+              type="text"
+              id="paren_grpfam"
+              name="paren_grpfam"
+              value={currentgrpfam.paren_grpfam}
+              onChange={handleChangegrpfam}
+              autoComplete="off"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="oficioescolaridad_grpfam">Oficio/Escolaridad:</label>
+            <input
+              type="text"
+              id="oficioescolaridad_grpfam"
+              name="oficioescolaridad_grpfam"
+              value={currentgrpfam.oficioescolaridad_grpfam}
+              onChange={handleChangegrpfam}
+              autoComplete="off"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="contacto_grpfam">Contacto:</label>
+            <input
+              placeholder='(+57)'
+              type="tel"
+              id="contacto_grpfam"
+              name="contacto_grpfam"
+              value={currentgrpfam.contacto_grpfam}
+              onChange={handleChangegrpfam}
+              onInput={(e) => {
+                e.target.value = e.target.value.replace(/\D/g, '');
+              }}
+              maxLength="10"
+              pattern="\d{10}"
+              autoComplete="off"
+            />
+          </div>
+          <button className='sig_btn' onClick={handleAddHabilicomp} type="button">Añadir</button>
+        </div>
+        <div className="table-container">
+          <table className="table">
+            <thead>
+              <tr>
+                <th className='td_thspecial'>Nombre</th>
+                <th className='td_thspecial'>Tipo de documento</th>
+                <th className='td_thspecial'># de documento</th>
+                <th className='td_thspecial'>Parentesco</th>
+                <th className='td_thspecial'>Oficio/Escolaridad</th>
+                <th className='td_thspecial'>Contacto</th>
+                <th className='td_thspecial'></th>
+              </tr>
+            </thead>
+            <tbody >
+              {newFormData.grupo_familiar.map((grpfam, index) => (
+                <tr key={index}>
+                  <td className='td_thspecial'>{grpfam.nombre_grpfam}</td>
+                  <td className='td_thspecial'>{grpfam.tipdoc_grpfam}</td>
+                  <td className='td_thspecial'>{grpfam.numdoc_grpfem}</td>
+                  <td className='td_thspecial'>{grpfam.paren_grpfam}</td>
+                  <td className='td_thspecial'>{grpfam.oficioescolaridad_grpfam}</td>
+                  <td className='td_thspecial'>{grpfam.contacto_grpfam}</td>
+                  <td>
+                    <button onClick={() => handelDeleteItemgrpfam(index)}><img src={imgtrash} alt="My SVG" /></button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </form>
+      <form className='formulario' onSubmit={handleSubmitform2}>
+        <div className="form-group">
+          <label htmlFor="personasdisca_grpfam">¿Vive con personas con discapacidad?:</label>
+          <select
+            id="personasdisca_grpfam"
+            name="personasdisca_grpfam"
+            value={newFormData.personasdisca_grpfam}
+            onChange={handleSelectChangeform2}
+            required
+            autoComplete="off"
+          >
+            <option value="" disabled hidden>Seleccione</option>
+            <option value="Si">Si</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+        <div className="form-group">
+          <label htmlFor="tipodisca_grpfam">¿Que tipo de discapacidad tiene la persona?:</label>
+          <select
+            id="tipodisca_grpfam"
+            name="tipodisca_grpfam"
+            value={newFormData.tipodisca_grpfam}
+            onChange={handleSelectChangeform2}
+            disabled={disabledFields.tipodisca_grpfam}
+            required={!disabledFields.tipodisca_grpfam}
+            autoComplete="off"
+          >
+            <option value="" disabled hidden>Seleccione</option>
+            <option value="Sensorial">Sensorial</option>
+            <option value="Mental">Mental</option>
+            <option value="Fisica">Fisica</option>
+            <option value="Multiple">Multiple</option>
+            <option value="Otras">Otras</option>
           </select>
         </div>
         <div className='button-container'>

@@ -10,6 +10,10 @@
     display: flex;
     flex-wrap: wrap;
   }
+  
+  .app {
+    background-color: black;
+  }
 
   .container_title_form{
     width: 100%; 
@@ -191,7 +195,7 @@
 }
 
 .container_footer {
-  font-size: small;
+  font-size: 1rem;
   bottom: 0;
   width: 100%;
   text-align: center;
@@ -226,4 +230,5 @@
 .container_title h1 {
   text-align: center;
   margin-right: 11%; /* Asegura que no haya margen alrededor del título */
+  font-size: 1.3rem;
 }

@@ -19,6 +19,10 @@ const Form4 = () => {
         celEmg: '',
     });
 
+    const [disabledFields, setDisabledFields] = useState({
+        espicifique_enfermedad: true,
+      });
+
     const history = useHistory();
 
     const handleSelectChangeform4 = (e) => {
@@ -27,6 +31,27 @@ const Form4 = () => {
             ...prevData,
             [name]: value,
         }));
+    };
+
+    const handleSelectChangeform4enfermedad = (e) => {
+        const { name, value } = e.target;
+        if (name === 'enfermedad') {
+            setDisabledFields((prevDisabledFields) => ({
+              ...prevDisabledFields,
+              espicifique_enfermedad: value !== 'Otros',
+            }));
+      
+            setdataForm4((prevData) => ({
+              ...prevData,
+              [name]: value,
+              espicifique_enfermedad: value !== 'Otros' ? '' : prevData.espicifique_enfermedad,
+            }));
+          } else {
+            setdataForm4((prevData) => ({
+              ...prevData,
+              [name]: value,
+            }));
+          }
     };
 
     const handleChangeform4 = (e) => {
@@ -40,8 +65,7 @@ const Form4 = () => {
     const handleSubmitform4 = async (e) => {
         e.preventDefault();
         const storedFormData = JSON.parse(localStorage.getItem('combinedDataform3')) || {};
-        
-        console.log(storedFormData);
+        console.log(storedFormData)
     
     };
 
@@ -61,7 +85,7 @@ const Form4 = () => {
                         id="enfermedad"
                         name="enfermedad"
                         value={dataForm4.enfermedad}
-                        onChange={handleSelectChangeform4}
+                        onChange={handleSelectChangeform4enfermedad}
                         required
                         autoComplete="off"
                     >
@@ -72,6 +96,7 @@ const Form4 = () => {
                         <option value="Migraña Aguda">Migraña Aguda</option>
                         <option value="Trastorno Mental">Trastorno Mental</option>
                         <option value="Otros">Otros</option>
+                        <option value="Ninguna">Ninguna</option>
                     </select>
                 </div>
                 <div className="form-groupll">
@@ -83,10 +108,12 @@ const Form4 = () => {
                         value={dataForm4.espicifique_enfermedad}
                         onChange={handleChangeform4}
                         autoComplete="off"
+                        disabled={disabledFields.espicifique_enfermedad}
+                        placeholder={disabledFields.espicifique_enfermedad ? 'N/A' : ''}
                     />
                 </div>
                 <div className="form-groupll">
-                    <label htmlFor="enfermedad">¿Esta bajo tratamiento?:</label>
+                    <label htmlFor="enfermedad">¿Está bajo tratamiento?:</label>
                     <select
                         id="tratamiento"
                         name="tratamiento"
@@ -212,6 +239,7 @@ const Form4 = () => {
                         value={dataForm4.nomEmg}
                         onChange={handleChangeform4}
                         autoComplete="off"
+                        required
                     />
                 </div>
                 <div className="form-groupll">
@@ -223,6 +251,7 @@ const Form4 = () => {
                         value={dataForm4.parentEmg}
                         onChange={handleChangeform4}
                         autoComplete="off"
+                        required
                     />
                 </div>
                 <div className="form-groupll">
@@ -234,6 +263,7 @@ const Form4 = () => {
                         value={dataForm4.celEmg}
                         onChange={handleChangeform4}
                         autoComplete="off"
+                        required
                     />
                 </div>
                 <div className='button-container'>

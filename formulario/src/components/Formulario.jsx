@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 
@@ -28,6 +28,7 @@ const Formulario = () => {
     numeroPersonasCargo: '',
     escolaridad: '',
   });
+  
 
   const [disabledFields, setDisabledFields] = useState({
     numHijos: false,
@@ -44,14 +45,27 @@ const Formulario = () => {
     }));
   };
 
+  useEffect(() => {
+    const storedData = JSON.parse(localStorage.getItem('formData'));
+    if (storedData) {
+      setFormData(storedData);
+      
+      setDisabledFields({
+        numHijos: storedData.tieneHijos === 'No',
+        numeroPersonasCargo: storedData.tienePersonasCargo === 'No', 
+      });
+    }
+  }, []); 
+
+
   /*const [setResultado] = useState(null);
   const [setError] = useState(null);*/
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     localStorage.setItem('formData', JSON.stringify(formData));
-    console.log(formData)
-    history.push('/Form2');
+      history.push('/Form2');
     /*const { customHeader, ...data } = formData;
     const headers = {
         'Custom-Header': customHeader

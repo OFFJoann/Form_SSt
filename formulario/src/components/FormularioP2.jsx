@@ -30,6 +30,17 @@ const Form2 = () => {
   const [disabledFields, setDisabledFields] = useState({
     tipodisca_grpfam: false,
   });
+
+  useEffect(() => {
+    const storedData = JSON.parse(localStorage.getItem('formData2'));
+    if (storedData) {
+      setnewFormData(storedData);
+      
+      setDisabledFields({
+        tipodisca_grpfam: storedData.personasdisca_grpfam === 'No',
+      });
+    }
+  }, []); 
   /*--------------------------------------------------------------------------------------------*/
 
   const history = useHistory();
@@ -47,8 +58,7 @@ const Form2 = () => {
 
     const storedFormData = JSON.parse(localStorage.getItem('formData'));
 
-    localStorage.setItem('combinedData', JSON.stringify({ ...storedFormData, ...newFormData }));
-    console.log(newFormData)
+    localStorage.setItem('formData2', JSON.stringify({ ...storedFormData, ...newFormData }));
     history.push('/Form3');
 
   };

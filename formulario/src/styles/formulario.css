@@ -99,6 +99,7 @@
     display: flex;
     justify-content: space-between;
     margin: 10px 0;
+    margin-top: 45px;
   }
 
   .button-container_one {
@@ -106,6 +107,7 @@
     display: flex;
     justify-content: flex-end;
     margin: 10px 0;
+    margin-top: 45px;
   }
 
   

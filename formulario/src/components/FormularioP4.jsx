@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from 'react-router-dom';
 
 
@@ -21,7 +21,20 @@ const Form4 = () => {
 
     const [disabledFields, setDisabledFields] = useState({
         espicifique_enfermedad: true,
-      });
+        cualalergia_medicamento: true,
+    });
+
+    useEffect(() => {
+        const storedData = JSON.parse(localStorage.getItem('formData4'));
+        if (storedData) {
+            setdataForm4(storedData);
+
+            setDisabledFields({
+                cualalergia_medicamento: storedData.alergia_medicamento === 'No',
+                espicifique_enfermedad:  storedData.enfermedad === 'Otros',
+            });
+        }
+    }, []);
 
     const history = useHistory();
 
@@ -31,27 +44,45 @@ const Form4 = () => {
             ...prevData,
             [name]: value,
         }));
+        const fieldsToDisable = {
+            alergia_medicamento: 'cualalergia_medicamento',
+        };
+
+        if (fieldsToDisable[name]) {
+            setDisabledFields((prevDisabledFields) => ({
+                ...prevDisabledFields,
+                [fieldsToDisable[name]]: value === 'No',
+            }));
+
+            if (value === 'No') {
+                setdataForm4({
+                    ...dataForm4,
+                    [name]: value,
+                    [fieldsToDisable[name]]: '',
+                });
+            }
+        }
     };
 
     const handleSelectChangeform4enfermedad = (e) => {
         const { name, value } = e.target;
         if (name === 'enfermedad') {
             setDisabledFields((prevDisabledFields) => ({
-              ...prevDisabledFields,
-              espicifique_enfermedad: value !== 'Otros',
+                ...prevDisabledFields,
+                espicifique_enfermedad: value !== 'Otros',
             }));
-      
+
             setdataForm4((prevData) => ({
-              ...prevData,
-              [name]: value,
-              espicifique_enfermedad: value !== 'Otros' ? '' : prevData.espicifique_enfermedad,
+                ...prevData,
+                [name]: value,
+                espicifique_enfermedad: value !== 'Otros' ? '' : prevData.espicifique_enfermedad,
             }));
-          } else {
+        } else {
             setdataForm4((prevData) => ({
-              ...prevData,
-              [name]: value,
+                ...prevData,
+                [name]: value,
             }));
-          }
+        }
     };
 
     const handleChangeform4 = (e) => {
@@ -64,14 +95,27 @@ const Form4 = () => {
 
     const handleSubmitform4 = async (e) => {
         e.preventDefault();
-        const storedFormData = JSON.parse(localStorage.getItem('combinedDataform3')) || {};
-        console.log(storedFormData)
-    
+        const storedFormData = JSON.parse(localStorage.getItem('formData3')) || {};
+        localStorage.setItem('formData4', JSON.stringify({ ...storedFormData, ...dataForm4 }));
+        setdataForm4({
+            enfermedad: '',
+            espicifique_enfermedad: '',
+            tratamiento: '',
+            medicamento: '',
+            controlMedico: '',
+            alergia_medicamento: '',
+            cualalergia_medicamento: '',
+            medioTrans: '',
+            tiempoTrans: '',
+            nomEmg: '',
+            parentEmg: '',
+            celEmg: '',
+        })
     };
 
     const buttonatras = async (e) => {
         history.push("/form3")
-      }
+    }
 
     return (
         <div>
@@ -180,6 +224,9 @@ const Form4 = () => {
                         name="cualalergia_medicamento"
                         value={dataForm4.cualalergia_medicamento}
                         onChange={handleChangeform4}
+                        disabled={disabledFields.cualalergia_medicamento}
+                        required={!disabledFields.cualalergia_medicamento}
+                        placeholder={disabledFields.cualalergia_medicamento ? 'N/A' : 'Especifique'}
                         autoComplete="off"
                     />
                 </div>
@@ -257,11 +304,17 @@ const Form4 = () => {
                 <div className="form-groupll">
                     <label htmlFor="celEmg">Número de contacto:</label>
                     <input
+                        placeholder="(+57)"
                         type="text"
                         id="celEmg"
                         name="celEmg"
                         value={dataForm4.celEmg}
                         onChange={handleChangeform4}
+                        onInput={(e) => {
+                            e.target.value = e.target.value.replace(/\D/g, '');
+                        }}
+                        maxLength="10"
+                        pattern="\d{10}"
                         autoComplete="off"
                         required
                     />

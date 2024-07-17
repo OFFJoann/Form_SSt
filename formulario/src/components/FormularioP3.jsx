@@ -34,6 +34,14 @@ const Form3 = () => {
     const [currentHabiliComp, setcurrentHabiliComp] = useState({
         habilidad_o_competencia: '',
     })
+
+    useEffect(() => {
+        const storedData = JSON.parse(localStorage.getItem('formData3'));
+        if (storedData) {
+            setdataForm3(storedData);
+
+        }
+    }, []);
     /*--------------------------------------------------------------------------------------------*/
 
     const handleDateInputform3 = (e) => {
@@ -72,9 +80,8 @@ const Form3 = () => {
 
     const handleSubmitform3 = async (e) => {
         e.preventDefault();
-        const storedFormData = JSON.parse(localStorage.getItem('combinedData'));
-        localStorage.setItem('combinedDataform3', JSON.stringify({ ...storedFormData, ...dataForm3 }));
-        console.log(dataForm3)
+        const storedFormData = JSON.parse(localStorage.getItem('formData2'));
+        localStorage.setItem('formData3', JSON.stringify({ ...storedFormData, ...dataForm3 }));
         history.push('/Form4');
     };
 
@@ -193,7 +200,7 @@ const Form3 = () => {
 
     return (
         <div>
-                        <form className="formulario" onSubmit={handleSubmitforms3}>
+            <form className="formulario" onSubmit={handleSubmitforms3}>
                 <div className='container_title_form'>
                     <label className='Title_form' htmlFor="Form1">INFORMACIÓN LABORAL</label>
                 </div>
@@ -440,7 +447,7 @@ const Form3 = () => {
                         </tbody>
                     </table>
                 </div>
-            </form>         
+            </form>
             <form className="formulario" onSubmit={handleSubmitform3}>
                 <div>
                     <div className='container_title_form'>

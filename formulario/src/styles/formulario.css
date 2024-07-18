@@ -65,6 +65,8 @@
     border-radius: 4px;
     box-sizing: border-box;
   }
+
+
   
   .form-group label {
     display: block;
@@ -249,3 +251,18 @@
   background-position: center; /* Centra la imagen */
   z-index: 999; /* Asegúrate de que tenga un z-index alto */
 }
+
+  /*MEDIA QUERY*/
+
+  @media only screen and (max-width: 415px){
+    .form-groupll,
+    .form-group {
+      margin: 5px;
+      width: 200px;
+      margin-left: 40px;
+    }
+    .container_title h1 {
+      font-size: small;
+    }
+  
+  }

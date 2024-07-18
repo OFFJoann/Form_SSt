@@ -1,121 +1,112 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from 'react-router-dom';
+import Finish from "./emergentes/Finish";
 
 
 const Form4 = () => {
-
     const [dataForm4, setdataForm4] = useState({
-        enfermedad: '',
-        espicifique_enfermedad: '',
-        tratamiento: '',
-        medicamento: '',
-        controlMedico: '',
-        alergia_medicamento: '',
-        cualalergia_medicamento: '',
-        medioTrans: '',
-        tiempoTrans: '',
-        nomEmg: '',
-        parentEmg: '',
-        celEmg: '',
+      enfermedad: '',
+      espicifique_enfermedad: '',
+      tratamiento: '',
+      medicamento: '',
+      controlMedico: '',
+      alergia_medicamento: '',
+      cualalergia_medicamento: '',
+      medioTrans: '',
+      tiempoTrans: '',
+      nomEmg: '',
+      parentEmg: '',
+      celEmg: '',
     });
-
+  
     const [disabledFields, setDisabledFields] = useState({
-        espicifique_enfermedad: true,
-        cualalergia_medicamento: true,
+      espicifique_enfermedad: true,
+      cualalergia_medicamento: true,
     });
-
+  
+    const [modalOpen, setModalOpen] = useState(false); // Estado para la visibilidad del modal
+  
     useEffect(() => {
-        const storedData = JSON.parse(localStorage.getItem('formData4'));
-        if (storedData) {
-            setdataForm4(storedData);
-
-            setDisabledFields({
-                cualalergia_medicamento: storedData.alergia_medicamento === 'No',
-                espicifique_enfermedad:  storedData.enfermedad === 'Otros',
-            });
-        }
+      const storedData = JSON.parse(localStorage.getItem('formData4'));
+      if (storedData) {
+        setdataForm4(storedData);
+  
+        setDisabledFields({
+          cualalergia_medicamento: storedData.alergia_medicamento === 'No',
+          espicifique_enfermedad: storedData.enfermedad !== 'Otros',
+        });
+      }
     }, []);
-
+  
     const history = useHistory();
-
+  
     const handleSelectChangeform4 = (e) => {
-        const { name, value } = e.target;
-        setdataForm4((prevData) => ({
-            ...prevData,
+      const { name, value } = e.target;
+      setdataForm4((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+      const fieldsToDisable = {
+        alergia_medicamento: 'cualalergia_medicamento',
+      };
+  
+      if (fieldsToDisable[name]) {
+        setDisabledFields((prevDisabledFields) => ({
+          ...prevDisabledFields,
+          [fieldsToDisable[name]]: value === 'No',
+        }));
+  
+        if (value === 'No') {
+          setdataForm4({
+            ...dataForm4,
             [name]: value,
-        }));
-        const fieldsToDisable = {
-            alergia_medicamento: 'cualalergia_medicamento',
-        };
-
-        if (fieldsToDisable[name]) {
-            setDisabledFields((prevDisabledFields) => ({
-                ...prevDisabledFields,
-                [fieldsToDisable[name]]: value === 'No',
-            }));
-
-            if (value === 'No') {
-                setdataForm4({
-                    ...dataForm4,
-                    [name]: value,
-                    [fieldsToDisable[name]]: '',
-                });
-            }
+            [fieldsToDisable[name]]: '',
+          });
         }
+      }
     };
-
+  
     const handleSelectChangeform4enfermedad = (e) => {
-        const { name, value } = e.target;
-        if (name === 'enfermedad') {
-            setDisabledFields((prevDisabledFields) => ({
-                ...prevDisabledFields,
-                espicifique_enfermedad: value !== 'Otros',
-            }));
-
-            setdataForm4((prevData) => ({
-                ...prevData,
-                [name]: value,
-                espicifique_enfermedad: value !== 'Otros' ? '' : prevData.espicifique_enfermedad,
-            }));
-        } else {
-            setdataForm4((prevData) => ({
-                ...prevData,
-                [name]: value,
-            }));
-        }
-    };
-
-    const handleChangeform4 = (e) => {
-        const { name, value } = e.target;
-        setdataForm4((prevData) => ({
-            ...prevData,
-            [name]: value
+      const { name, value } = e.target;
+      if (name === 'enfermedad') {
+        setDisabledFields((prevDisabledFields) => ({
+          ...prevDisabledFields,
+          espicifique_enfermedad: value !== 'Otros',
         }));
+  
+        setdataForm4((prevData) => ({
+          ...prevData,
+          [name]: value,
+          espicifique_enfermedad: value !== 'Otros' ? '' : prevData.espicifique_enfermedad,
+        }));
+      } else {
+        setdataForm4((prevData) => ({
+          ...prevData,
+          [name]: value,
+        }));
+      }
     };
-
+  
+    const handleChangeform4 = (e) => {
+      const { name, value } = e.target;
+      setdataForm4((prevData) => ({
+        ...prevData,
+        [name]: value
+      }));
+    };
+  
     const handleSubmitform4 = async (e) => {
-        e.preventDefault();
-        const storedFormData = JSON.parse(localStorage.getItem('formData3')) || {};
-        localStorage.setItem('formData4', JSON.stringify({ ...storedFormData, ...dataForm4 }));
-        setdataForm4({
-            enfermedad: '',
-            espicifique_enfermedad: '',
-            tratamiento: '',
-            medicamento: '',
-            controlMedico: '',
-            alergia_medicamento: '',
-            cualalergia_medicamento: '',
-            medioTrans: '',
-            tiempoTrans: '',
-            nomEmg: '',
-            parentEmg: '',
-            celEmg: '',
-        })
+      e.preventDefault();
+      const storedFormData = JSON.parse(localStorage.getItem('formData3')) || {};
+      localStorage.setItem('formData4', JSON.stringify({ ...storedFormData, ...dataForm4 }));
+      
+      // Abrir el modal después de enviar el formulario
+      setModalOpen(true);
     };
-
+  
     const buttonatras = async (e) => {
-        history.push("/form3")
-    }
+      history.push("/form3");
+    };
 
     return (
         <div>
@@ -321,9 +312,12 @@ const Form4 = () => {
                 </div>
                 <div className='button-container'>
                     <button type='submit' className='sig_btn' onClick={buttonatras}>Atras</button>
-                    <button type='submit' className='sig_btn'>Terminar</button>
+                    <button type='submit' className='sig_btn' >Terminar</button>
                 </div>
+
+                
             </form>
+            {modalOpen && <Finish onClose={() => setModalOpen(false)} />}
 
         </div>
     )

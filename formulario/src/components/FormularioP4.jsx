@@ -100,7 +100,23 @@ const Form4 = () => {
       const storedFormData = JSON.parse(localStorage.getItem('formData3')) || {};
       localStorage.setItem('formData4', JSON.stringify({ ...storedFormData, ...dataForm4 }));
       
-      // Abrir el modal después de enviar el formulario
+      localStorage.clear()
+
+      setdataForm4({
+        enfermedad: '',
+        espicifique_enfermedad: '',
+        tratamiento: '',
+        medicamento: '',
+        controlMedico: '',
+        alergia_medicamento: '',
+        cualalergia_medicamento: '',
+        medioTrans: '',
+        tiempoTrans: '',
+        nomEmg: '',
+        parentEmg: '',
+        celEmg: '',
+      })
+
       setModalOpen(true);
     };
   

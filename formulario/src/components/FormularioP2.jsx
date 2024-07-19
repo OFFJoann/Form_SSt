@@ -21,7 +21,7 @@ const Form2 = () => {
   const [currentgrpfam, setCurrentgrpfam] = useState({
     nombre_grpfam: '',
     tipdoc_grpfam: '',
-    numdoc_grpfem: '',
+    numdoc_grpfam: '',
     paren_grpfam: '',
     oficioescolaridad_grpfam: '',
     contacto_grpfam: '',
@@ -59,6 +59,7 @@ const Form2 = () => {
     const storedFormData = JSON.parse(localStorage.getItem('formData'));
 
     localStorage.setItem('formData2', JSON.stringify({ ...storedFormData, ...newFormData }));
+    console.log(newFormData)
     history.push('/Form3');
 
   };
@@ -126,7 +127,7 @@ const Form2 = () => {
       setCurrentgrpfam({
         nombre_grpfam: '',
         tipdoc_grpfam: '',
-        numdoc_grpfem: '',
+        numdoc_grpfam: '',
         paren_grpfam: '',
         oficioescolaridad_grpfam: '',
         contacto_grpfam: '',
@@ -317,13 +318,13 @@ const Form2 = () => {
             </select>
           </div>
           <div className="form-group">
-            <label htmlFor="numdoc_grpfem"># de documento:</label>
+            <label htmlFor="numdoc_grpfam"># de documento:</label>
             <input
               placeholder='#'
               type="tel"
-              id="numdoc_grpfem"
-              name="numdoc_grpfem"
-              value={currentgrpfam.numdoc_grpfem}
+              id="numdoc_grpfam"
+              name="numdoc_grpfam"
+              value={currentgrpfam.numdoc_grpfam}
               onChange={handleChangegrpfam}
               onInput={(e) => {
                 e.target.value = e.target.value.replace(/\D/g, '');
@@ -391,7 +392,7 @@ const Form2 = () => {
                 <tr key={index}>
                   <td className='td_thspecial'>{grpfam.nombre_grpfam}</td>
                   <td className='td_thspecial'>{grpfam.tipdoc_grpfam}</td>
-                  <td className='td_thspecial'>{grpfam.numdoc_grpfem}</td>
+                  <td className='td_thspecial'>{grpfam.numdoc_grpfam}</td>
                   <td className='td_thspecial'>{grpfam.paren_grpfam}</td>
                   <td className='td_thspecial'>{grpfam.oficioescolaridad_grpfam}</td>
                   <td className='td_thspecial'>{grpfam.contacto_grpfam}</td>

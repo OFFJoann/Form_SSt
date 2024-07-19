@@ -22,9 +22,9 @@ const Form3 = () => {
     const history = useHistory();
 
     const [currentExperience, setCurrentExperience] = useState({
-        empresa: '',
-        cargo: '',
-        duracion: ''
+        empresa_exp: '',
+        cargo_exp: '',
+        duracion_exp: ''
     });
 
     const [currentIdiomas, setcurrentIdiomas] = useState({
@@ -82,6 +82,7 @@ const Form3 = () => {
         e.preventDefault();
         const storedFormData = JSON.parse(localStorage.getItem('formData2'));
         localStorage.setItem('formData3', JSON.stringify({ ...storedFormData, ...dataForm3 }));
+        console.log(dataForm3)
         history.push('/Form4');
     };
 
@@ -350,34 +351,34 @@ const Form3 = () => {
                         <label className='Title_form' htmlFor="Form1">EXPERIENCIA LABORAL</label>
                     </div>
                     <div className="form-group">
-                        <label htmlFor="empresa">Empresa:</label>
+                        <label htmlFor="empresa_exp">Empresa:</label>
                         <input
                             type="text"
-                            id="empresa"
-                            name="empresa"
-                            value={currentExperience.empresa}
+                            id="empresa_exp"
+                            name="empresa_exp"
+                            value={currentExperience.empresa_exp}
                             onChange={handleChangeExperience}
                             autoComplete="off"
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="cargo">Cargo:</label>
+                        <label htmlFor="cargo_exp">Cargo:</label>
                         <input
                             type="text"
-                            id="cargo"
-                            name="cargo"
-                            value={currentExperience.cargo}
+                            id="cargo_exp"
+                            name="cargo_exp"
+                            value={currentExperience.cargo_exp}
                             onChange={handleChangeExperience}
                             autoComplete="off"
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="duracion">Duración:</label>
+                        <label htmlFor="duracion_exp">Duración:</label>
                         <input
                             type="text"
-                            id="duracion"
-                            name="duracion"
-                            value={currentExperience.duracion}
+                            id="duracion_exp"
+                            name="duracion_exp"
+                            value={currentExperience.duracion_exp}
                             onChange={handleChangeExperience}
                             autoComplete="off"
                         />
@@ -397,9 +398,9 @@ const Form3 = () => {
                         <tbody >
                             {dataForm3.exp_otras_empresas.map((experience, index) => (
                                 <tr key={index}>
-                                    <td>{experience.empresa}</td>
-                                    <td>{experience.cargo}</td>
-                                    <td>{experience.duracion}</td>
+                                    <td>{experience.empresa_exp}</td>
+                                    <td>{experience.cargo_exp}</td>
+                                    <td>{experience.duracion_exp}</td>
                                     <td>
                                         <button onClick={() => handleDeleteItem(index)}><img src={imgtrash} alt="My SVG" /></button>
                                     </td>

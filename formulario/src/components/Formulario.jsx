@@ -58,27 +58,14 @@ const Formulario = () => {
   }, []); 
   
 
-  /*const [setResultado] = useState(null);
-  const [setError] = useState(null);*/
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     localStorage.setItem('formData', JSON.stringify(formData));
       history.push('/Form2');
-    /*const { customHeader, ...data } = formData;
-    const headers = {
-        'Custom-Header': customHeader
-    };
 
-    try {
-        const response = await EnviarDatos(data, headers);
-        setResultado(response);
-        setError(null);
-    } catch (error) {
-        setError(error);
-        setResultado(null);
-    }*/
 
   };
 

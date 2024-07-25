@@ -22,9 +22,9 @@ const Form3 = () => {
     const history = useHistory();
 
     const [currentExperience, setCurrentExperience] = useState({
-        empresa_exp: '',
-        cargo_exp: '',
-        duracion_exp: ''
+        empresas_exp: '',
+        cargos_exp: '',
+        duraciones_exp: ''
     });
 
     const [currentIdiomas, setcurrentIdiomas] = useState({
@@ -32,7 +32,7 @@ const Form3 = () => {
     })
 
     const [currentHabiliComp, setcurrentHabiliComp] = useState({
-        habilidad_o_competencia: '',
+        habilidades_competencias: '',
     })
 
     useEffect(() => {
@@ -137,7 +137,7 @@ const Form3 = () => {
                 ...prevData,
                 exp_otras_empresas: [...prevData.exp_otras_empresas, currentExperience]
             }));
-            setCurrentExperience({ empresa: '', cargo: '', duracion: '' });
+            setCurrentExperience({ empresas_exp: '', cargos_exp: '', duraciones_exp: '' });
             setAddExperienceTrigger(false);
         }
     }, [addExperienceTrigger, currentExperience]);
@@ -161,7 +161,7 @@ const Form3 = () => {
                 ...prevData,
                 habilidades_competencias: [...prevData.habilidades_competencias, currentHabiliComp]
             }));
-            setcurrentHabiliComp({ habilidad_o_competencia: '', })
+            setcurrentHabiliComp({ habilidades_competencias: '', })
             setaddHabiliCompTrigger(false);
         }
     }, [addHabiliCompTrigger, currentHabiliComp]);
@@ -351,34 +351,34 @@ const Form3 = () => {
                         <label className='Title_form' htmlFor="Form1">EXPERIENCIA LABORAL</label>
                     </div>
                     <div className="form-group">
-                        <label htmlFor="empresa_exp">Empresa:</label>
+                        <label htmlFor="empresas_exp">Empresa:</label>
                         <input
                             type="text"
-                            id="empresa_exp"
-                            name="empresa_exp"
-                            value={currentExperience.empresa_exp}
+                            id="empresas_exp"
+                            name="empresas_exp"
+                            value={currentExperience.empresas_exp}
                             onChange={handleChangeExperience}
                             autoComplete="off"
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="cargo_exp">Cargo:</label>
+                        <label htmlFor="cargos_exp">Cargo:</label>
                         <input
                             type="text"
-                            id="cargo_exp"
-                            name="cargo_exp"
-                            value={currentExperience.cargo_exp}
+                            id="cargos_exp"
+                            name="cargos_exp"
+                            value={currentExperience.cargos_exp}
                             onChange={handleChangeExperience}
                             autoComplete="off"
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="duracion_exp">Duración:</label>
+                        <label htmlFor="duraciones_exp">Duración:</label>
                         <input
                             type="text"
-                            id="duracion_exp"
-                            name="duracion_exp"
-                            value={currentExperience.duracion_exp}
+                            id="duraciones_exp"
+                            name="duraciones_exp"
+                            value={currentExperience.duraciones_exp}
                             onChange={handleChangeExperience}
                             autoComplete="off"
                         />
@@ -398,9 +398,9 @@ const Form3 = () => {
                         <tbody >
                             {dataForm3.exp_otras_empresas.map((experience, index) => (
                                 <tr key={index}>
-                                    <td>{experience.empresa_exp}</td>
-                                    <td>{experience.cargo_exp}</td>
-                                    <td>{experience.duracion_exp}</td>
+                                    <td>{experience.empresas_exp}</td>
+                                    <td>{experience.cargos_exp}</td>
+                                    <td>{experience.duraciones_exp}</td>
                                     <td>
                                         <button onClick={() => handleDeleteItem(index)}><img src={imgtrash} alt="My SVG" /></button>
                                     </td>
@@ -416,12 +416,12 @@ const Form3 = () => {
                         <label className='Title_form' htmlFor="Form1">HABILIDADES Y COMPETENCIA</label>
                     </div>
                     <div className="form-group">
-                        <label htmlFor="habilidad_o_competencia">Habilidad o competencia:</label>
+                        <label htmlFor="habilidades_competencias">Habilidad o competencia:</label>
                         <input
-                            type="habilidad_o_competencia"
-                            id="habilidad_o_competencia"
-                            name="habilidad_o_competencia"
-                            value={currentHabiliComp.habilidad_o_competencia}
+                            type="habilidades_competencias"
+                            id="habilidades_competencias"
+                            name="habilidades_competencias"
+                            value={currentHabiliComp.habilidades_competencias}
                             onChange={handleChangeHabilicomp}
                             autoComplete="off"
                         />
@@ -439,7 +439,7 @@ const Form3 = () => {
                         <tbody >
                             {dataForm3.habilidades_competencias.map((habilidades_competencias, index) => (
                                 <tr key={index}>
-                                    <td>{habilidades_competencias.habilidad_o_competencia}</td>
+                                    <td>{habilidades_competencias.habilidades_competencias}</td>
                                     <td>
                                         <button onClick={() => handelDeleteItemHabiliComp(index)}><img src={imgtrash} alt="My SVG" /></button>
                                     </td>

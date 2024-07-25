@@ -16,15 +16,18 @@ const Form2 = () => {
     grupo_familiar: [],
     personasdisca_grpfam: '',
     tipodisca_grpfam: '',
+    srv_Electrico: '',
+    srv_Acueducto: '',
+    srv_Gas: '',
   });
 
   const [currentgrpfam, setCurrentgrpfam] = useState({
-    nombre_grpfam: '',
-    tipdoc_grpfam: '',
-    numdoc_grpfam: '',
-    paren_grpfam: '',
+    nombres_grpfam: '',
+    tipdocs_grpfam: '',
+    numdocs_grpfam: '',
+    parens_grpfam: '',
     oficioescolaridad_grpfam: '',
-    contacto_grpfam: '',
+    contactos_grpfam: '',
   });
 
   const [disabledFields, setDisabledFields] = useState({
@@ -125,12 +128,12 @@ const Form2 = () => {
         grupo_familiar: [...prevData.grupo_familiar, currentgrpfam]
       }));
       setCurrentgrpfam({
-        nombre_grpfam: '',
-        tipdoc_grpfam: '',
-        numdoc_grpfam: '',
-        paren_grpfam: '',
+        nombres_grpfam: '',
+        tipdocs_grpfam: '',
+        numdocs_grpfam: '',
+        parens_grpfam: '',
         oficioescolaridad_grpfam: '',
-        contacto_grpfam: '',
+        contactos_grpfam: '',
       });
       setaddgrpfamTrigger(false);
     }
@@ -284,6 +287,51 @@ const Form2 = () => {
             <option value="No">No</option>
           </select>
         </div>
+        <div className="form-group">
+          <label htmlFor="srv_Electrico">Su hogar cuenta con servicios de energía eléctrica:</label>
+          <select
+            id="srv_Electrico"
+            name="srv_Electrico"
+            value={newFormData.srv_Electrico}
+            onChange={handleSelectChangeform2}
+            required
+            autoComplete="off"
+          >
+            <option value="" disabled hidden>Seleccione</option>
+            <option value="Si">Si</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+        <div className="form-group">
+          <label htmlFor="srv_Acueducto">Su hogar cuenta con servicios de acueducto:</label>
+          <select
+            id="srv_Acueducto"
+            name="srv_Acueducto"
+            value={newFormData.srv_Acueducto}
+            onChange={handleSelectChangeform2}
+            required
+            autoComplete="off"
+          >
+            <option value="" disabled hidden>Seleccione</option>
+            <option value="Si">Si</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+        <div className="form-group">
+          <label htmlFor="srv_Gas">Su hogar cuenta con servicios de gas natural:</label>
+          <select
+            id="srv_Gas"
+            name="srv_Gas"
+            value={newFormData.srv_Gas}
+            onChange={handleSelectChangeform2}
+            required
+            autoComplete="off"
+          >
+            <option value="" disabled hidden>Seleccione</option>
+            <option value="Si">Si</option>
+            <option value="No">No</option>
+          </select>
+        </div>
       </form>
       <form className="formulario" onSubmit={handleSubmitforms2}>
         <div>
@@ -291,22 +339,22 @@ const Form2 = () => {
             <label className='Title_form' htmlFor="Form1">GRUPO FAMILIAR</label>
           </div>
           <div className="form-group">
-            <label htmlFor="nombre_grpfam">Nombre:</label>
+            <label htmlFor="nombres_grpfam">Nombre:</label>
             <input
               type="text"
-              id="nombre_grpfam"
-              name="nombre_grpfam"
-              value={currentgrpfam.nombre_grpfam}
+              id="nombres_grpfam"
+              name="nombres_grpfam"
+              value={currentgrpfam.nombres_grpfam}
               onChange={handleChangegrpfam}
               autoComplete="off"
             />
           </div>
           <div className="form-group">
-            <label htmlFor="tipdoc_grpfam">Tipo de documento:</label>
+            <label htmlFor="tipdocs_grpfam">Tipo de documento:</label>
             <select
-              id="tipdoc_grpfam"
-              name="tipdoc_grpfam"
-              value={currentgrpfam.tipdoc_grpfam}
+              id="tipdocs_grpfam"
+              name="tipdocs_grpfam"
+              value={currentgrpfam.tipdocs_grpfam}
               onChange={handleSelectChangeform2ext}
               autoComplete="off"
             >
@@ -318,13 +366,13 @@ const Form2 = () => {
             </select>
           </div>
           <div className="form-group">
-            <label htmlFor="numdoc_grpfam"># de documento:</label>
+            <label htmlFor="numdocs_grpfam"># de documento:</label>
             <input
               placeholder='#'
               type="tel"
-              id="numdoc_grpfam"
-              name="numdoc_grpfam"
-              value={currentgrpfam.numdoc_grpfam}
+              id="numdocs_grpfam"
+              name="numdocs_grpfam"
+              value={currentgrpfam.numdocs_grpfam}
               onChange={handleChangegrpfam}
               onInput={(e) => {
                 e.target.value = e.target.value.replace(/\D/g, '');
@@ -334,12 +382,12 @@ const Form2 = () => {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="paren_grpfam">Parentesco:</label>
+            <label htmlFor="parens_grpfam">Parentesco:</label>
             <input
               type="text"
-              id="paren_grpfam"
-              name="paren_grpfam"
-              value={currentgrpfam.paren_grpfam}
+              id="parens_grpfam"
+              name="parens_grpfam"
+              value={currentgrpfam.parens_grpfam}
               onChange={handleChangegrpfam}
               autoComplete="off"
             />
@@ -356,13 +404,13 @@ const Form2 = () => {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="contacto_grpfam">Contacto:</label>
+            <label htmlFor="contactos_grpfam">Contacto:</label>
             <input
               placeholder='(+57)'
               type="tel"
-              id="contacto_grpfam"
-              name="contacto_grpfam"
-              value={currentgrpfam.contacto_grpfam}
+              id="contactos_grpfam"
+              name="contactos_grpfam"
+              value={currentgrpfam.contactos_grpfam}
               onChange={handleChangegrpfam}
               onInput={(e) => {
                 e.target.value = e.target.value.replace(/\D/g, '');
@@ -390,12 +438,12 @@ const Form2 = () => {
             <tbody >
               {newFormData.grupo_familiar.map((grpfam, index) => (
                 <tr key={index}>
-                  <td className='td_thspecial'>{grpfam.nombre_grpfam}</td>
-                  <td className='td_thspecial'>{grpfam.tipdoc_grpfam}</td>
-                  <td className='td_thspecial'>{grpfam.numdoc_grpfam}</td>
-                  <td className='td_thspecial'>{grpfam.paren_grpfam}</td>
+                  <td className='td_thspecial'>{grpfam.nombres_grpfam}</td>
+                  <td className='td_thspecial'>{grpfam.tipdocs_grpfam}</td>
+                  <td className='td_thspecial'>{grpfam.numdocs_grpfam}</td>
+                  <td className='td_thspecial'>{grpfam.parens_grpfam}</td>
                   <td className='td_thspecial'>{grpfam.oficioescolaridad_grpfam}</td>
-                  <td className='td_thspecial'>{grpfam.contacto_grpfam}</td>
+                  <td className='td_thspecial'>{grpfam.contactos_grpfam}</td>
                   <td>
                     <button onClick={() => handelDeleteItemgrpfam(index)}><img src={imgtrash} alt="My SVG" /></button>
                   </td>

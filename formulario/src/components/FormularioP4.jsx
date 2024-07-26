@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from 'react-router-dom';
 import Finish from "./emergentes/Finish";
 import { EnviarDatos } from "../services/api";
+import Finisherror from "./emergentes/Finisherror";
 
 const Form4 = () => {
   const [dataForm4, setdataForm4] = useState({
@@ -29,9 +30,8 @@ const Form4 = () => {
     frecuencia_ActFisica: true,
   });
 
-  const [modalOpen, setModalOpen] = useState(false); // Estado para la visibilidad del modal
-  //const [resultado, setResultado] = useState(null);
-  //const [errorAPI, setError] = useState(null);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalOpenerror, setModalOpenerror] = useState(false);
 
   useEffect(() => {
     const storedData = JSON.parse(localStorage.getItem('formData4'));
@@ -107,33 +107,25 @@ const Form4 = () => {
   const handleSubmitform4 = async (e) => {
     e.preventDefault();
 
-    // Guarda el estado actual del formulario en localStorage
     localStorage.setItem('formData4', JSON.stringify(dataForm4));
-
-    // Recupera y combina datos de formData3 y formData4
     const storedFormData = JSON.parse(localStorage.getItem('formData3')) || {};
     const finalData = { ...storedFormData, ...dataForm4 };
 
-    // Extrae el encabezado personalizado si existe
     const { customHeader, ...data } = finalData;
     const headers = customHeader ? { 'Custom-Header': customHeader } : {};
 
     try {
       const response = await EnviarDatos(data, headers);
-      //setResultado(response);
-      //setError(null);
       console.log("Datos enviados", response)
+      setModalOpen(true);
     } catch (error) {
-      //setError(errorAPI);
-      //setResultado(null);
       console.error('Error:', error.message);
+      setModalOpenerror(true);
     }
 
-    setModalOpen(true);
   };
 
   const buttonatras = async (e) => {
-    // Guarda el estado actual en localStorage antes de retroceder
     localStorage.setItem('formData4', JSON.stringify(dataForm4));
     history.push("/form3");
   };
@@ -417,6 +409,7 @@ const Form4 = () => {
 
       </form>
       {modalOpen && <Finish onClose={() => setModalOpen(false)} />}
+      {modalOpenerror && <Finisherror onClose={() => setModalOpenerror(false)} />}
 
     </div>
   )

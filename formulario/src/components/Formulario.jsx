@@ -64,9 +64,7 @@ const Formulario = () => {
     e.preventDefault();
 
     localStorage.setItem('formData', JSON.stringify(formData));
-      history.push('/Form2');
-
-
+    history.push('/Form2');
   };
 
   const handleDateInput = (e) => {

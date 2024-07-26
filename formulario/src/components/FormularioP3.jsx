@@ -80,9 +80,9 @@ const Form3 = () => {
 
     const handleSubmitform3 = async (e) => {
         e.preventDefault();
+        
         const storedFormData = JSON.parse(localStorage.getItem('formData2'));
         localStorage.setItem('formData3', JSON.stringify({ ...storedFormData, ...dataForm3 }));
-        console.log(dataForm3)
         history.push('/Form4');
     };
 
@@ -196,7 +196,8 @@ const Form3 = () => {
     };
     /*--------------------------------------------------------------------------------------------*/
     const buttonatras = async (e) => {
-        history.push("/form2")
+    localStorage.setItem('formData3', JSON.stringify(dataForm3));
+    history.push("/form2")
     }
 
     return (
@@ -488,7 +489,7 @@ const Form3 = () => {
                     </table>
                 </div>
                 <div className='button-container'>
-                    <button type='submit' className='sig_btn' onClick={buttonatras}>Atras</button>
+                    <button type='button' className='sig_btn' onClick={buttonatras}>Atras</button>
                     <button type='submit' className='sig_btn'>Siguiente</button>
                 </div>
             </form>

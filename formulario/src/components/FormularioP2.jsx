@@ -62,7 +62,6 @@ const Form2 = () => {
     const storedFormData = JSON.parse(localStorage.getItem('formData'));
 
     localStorage.setItem('formData2', JSON.stringify({ ...storedFormData, ...newFormData }));
-    console.log(newFormData)
     history.push('/Form3');
 
   };
@@ -159,6 +158,7 @@ const Form2 = () => {
   };
 
   const buttonatras = async (e) => {
+    localStorage.setItem('formData2', JSON.stringify(newFormData));
     history.push("/")
   }
 
@@ -489,7 +489,7 @@ const Form2 = () => {
           </select>
         </div>
         <div className='button-container'>
-          <button type='submit' className='sig_btn' onClick={buttonatras}>Atras</button>
+          <button type='button' className='sig_btn' onClick={buttonatras}>Atras</button>
           <button type='submit' className='sig_btn'>Siguiente</button>
         </div>
       </form>

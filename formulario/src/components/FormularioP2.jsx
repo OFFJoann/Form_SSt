@@ -359,14 +359,14 @@ const Form2 = () => {
               autoComplete="off"
             >
               <option value="" disabled hidden>Seleccione</option>
-              <option value="Cedula cuidadana">Cedula cuidadana</option>
-              <option value="Cedula extrangera">Cedula extranjera</option>
+              <option value="Cedula cuidadana">Cédula de cuidadanía</option>
+              <option value="Cedula extrangera">Cédula de extranjería</option>
               <option value="Tarjeta de identidad">Tarjeta de identidad</option>
               <option value="Registro civil">Registro civil</option>
             </select>
           </div>
           <div className="form-group">
-            <label htmlFor="numdocs_grpfam"># de documento:</label>
+            <label htmlFor="numdocs_grpfam">Número de documento:</label>
             <input
               placeholder='#'
               type="tel"
@@ -428,7 +428,7 @@ const Form2 = () => {
               <tr>
                 <th className='td_thspecial'>Nombre</th>
                 <th className='td_thspecial'>Tipo de documento</th>
-                <th className='td_thspecial'># de documento</th>
+                <th className='td_thspecial'>Número de documento</th>
                 <th className='td_thspecial'>Parentesco</th>
                 <th className='td_thspecial'>Oficio/Escolaridad</th>
                 <th className='td_thspecial'>Contacto</th>
@@ -470,7 +470,7 @@ const Form2 = () => {
           </select>
         </div>
         <div className="form-group">
-          <label htmlFor="tipodisca_grpfam">¿Que tipo de discapacidad tiene la persona?:</label>
+          <label htmlFor="tipodisca_grpfam">¿Qué tipo de discapacidad tiene la persona?:</label>
           <select
             id="tipodisca_grpfam"
             name="tipodisca_grpfam"
@@ -483,13 +483,13 @@ const Form2 = () => {
             <option value="" disabled hidden>Seleccione</option>
             <option value="Sensorial">Sensorial</option>
             <option value="Mental">Mental</option>
-            <option value="Fisica">Fisica</option>
+            <option value="Fisica">Física</option>
             <option value="Multiple">Multiple</option>
             <option value="Otras">Otras</option>
           </select>
         </div>
         <div className='button-container'>
-          <button type='button' className='sig_btn' onClick={buttonatras}>Atras</button>
+          <button type='button' className='sig_btn' onClick={buttonatras}>Atrás</button>
           <button type='submit' className='sig_btn'>Siguiente</button>
         </div>
       </form>

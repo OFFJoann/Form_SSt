@@ -15,7 +15,7 @@ export const Obtenerdatos = async () => {
 };
 
 
-const ApiURL = 'http://192.168.7.185:1584/api/personas/createOrUpdate';
+const ApiURL = 'http://192.168.7.116:8000/procesar_informacion';
 
 export const EnviarDatos = async (data, headers) => {
     try {

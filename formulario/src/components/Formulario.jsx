@@ -134,12 +134,12 @@ const Formulario = () => {
           autoComplete="off"
         >
           <option value="" disabled hidden>Seleccione</option>
-          <option value="Cedula cuidadana">Cedula cuidadana</option>
-          <option value="Cedula de extrangeria">Cedula de extranjeria</option>
+          <option value="Cedula cuidadana">Cédula de cuidadanía</option>
+          <option value="Cedula de extrangeria">Cédula de extranjería</option>
         </select>
       </div>
       <div className="form-group">
-        <label htmlFor="numDoc">Numero de documento:</label>
+        <label htmlFor="numDoc">Número de documento:</label>
         <input
           type="tel"
           id="numDoc"
@@ -219,7 +219,7 @@ const Formulario = () => {
         />
       </div>
       <div className="form-group">
-        <label htmlFor="genero">Genero:</label>
+        <label htmlFor="genero">Género:</label>
         <select
           id="genero"
           name="genero"
@@ -270,8 +270,6 @@ const Formulario = () => {
           <option value="Indígenas">Indígenas</option>
           <option value="Afrocolombiano">Afrocolombianos</option>
           <option value="Raizales">Raizales</option>
-          <option value="Rom">Rom</option>
-          <option value="gitano">Gitano</option>
         </select>
       </div>
       <div className="form-group">
@@ -310,7 +308,7 @@ const Formulario = () => {
         />
       </div>
       <div className="form-group">
-        <label htmlFor="email">Correo electronico:</label>
+        <label htmlFor="email">Correo electrónico:</label>
         <input
           type="email"
           id="email"
@@ -387,7 +385,7 @@ const Formulario = () => {
         </select>
       </div>
       <div className="form-group">
-        <label htmlFor="numHijos">Cuantos hijos:</label>
+        <label htmlFor="numHijos">Cuántos hijos:</label>
         <select
           id="numHijos"
           name="numHijos"
@@ -420,7 +418,7 @@ const Formulario = () => {
         </select>
       </div>
       <div className="form-group">
-        <label htmlFor="numeroPersonasCargo">Cuantas personas:</label>
+        <label htmlFor="numeroPersonasCargo">Cuántas personas:</label>
         <select
           id="numeroPersonasCargo"
           name="numeroPersonasCargo"

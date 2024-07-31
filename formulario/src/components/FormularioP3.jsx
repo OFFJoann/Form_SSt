@@ -334,7 +334,7 @@ const Form3 = () => {
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="cesantias">Cesantias:</label>
+                    <label htmlFor="cesantias">Cesantías:</label>
                     <input
                         type="text"
                         id="cesantias"
@@ -453,7 +453,7 @@ const Form3 = () => {
             <form className="formulario" onSubmit={handleSubmitform3}>
                 <div>
                     <div className='container_title_form'>
-                        <label className='Title_form' htmlFor="Form1">¿QUE IDIOMAS HABLAS?</label>
+                        <label className='Title_form' htmlFor="Form1">¿QUÉ IDIOMAS HABLAS?</label>
                     </div>
                     <div className="form-group">
                         <label htmlFor="idioma">Idioma:</label>
@@ -489,7 +489,7 @@ const Form3 = () => {
                     </table>
                 </div>
                 <div className='button-container'>
-                    <button type='button' className='sig_btn' onClick={buttonatras}>Atras</button>
+                    <button type='button' className='sig_btn' onClick={buttonatras}>Atrás</button>
                     <button type='submit' className='sig_btn'>Siguiente</button>
                 </div>
             </form>

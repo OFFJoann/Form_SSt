@@ -137,7 +137,7 @@ const Form4 = () => {
           <label className='Title_form' htmlFor="Form1">CONDICIONES DE SALUD</label>
         </div>
         <div className="form-groupll">
-          <label htmlFor="enfermedad">¿Parece de alguna enfermedad?:</label>
+          <label htmlFor="enfermedad">¿Padece de alguna enfermedad?:</label>
           <select
             id="enfermedad"
             name="enfermedad"
@@ -157,7 +157,7 @@ const Form4 = () => {
           </select>
         </div>
         <div className="form-groupll">
-          <label htmlFor="espicifique_enfermedad">Especifique cual:</label>
+          <label htmlFor="espicifique_enfermedad">Especifíque cuál:</label>
           <input
             type="text"
             id="espicifique_enfermedad"
@@ -230,7 +230,7 @@ const Form4 = () => {
           </select>
         </div>
         <div className="form-groupll">
-          <label htmlFor="cualalergia_medicamento">Cual o Cuales:</label>
+          <label htmlFor="cualalergia_medicamento">Cuál o Cuáles:</label>
           <input
             type="text"
             id="cualalergia_medicamento"
@@ -264,7 +264,7 @@ const Form4 = () => {
           </select>
         </div>
         <div className="form-groupll">
-          <label htmlFor="actividad_Fisica">¿Practica actividad física?:</label>
+          <label htmlFor="actividad_Fisica">¿Práctica actividad física?:</label>
           <select
             id="actividad_Fisica"
             name="actividad_Fisica"
@@ -279,7 +279,7 @@ const Form4 = () => {
           </select>
         </div>
         <div className="form-groupll">
-          <label htmlFor="frecuencia_ActFisica">Con que regularidad practica:</label>
+          <label htmlFor="frecuencia_ActFisica">Con qué regularidad práctica:</label>
           <select
             id="frecuencia_ActFisica"
             name="frecuencia_ActFisica"
@@ -290,8 +290,9 @@ const Form4 = () => {
             autoComplete="off"
           >
             <option value="" disabled hidden>Seleccione</option>
-            <option value="Si">Si</option>
-            <option value="No">No</option>
+            <option value="Si">Todos los días</option>
+            <option value="No">3 veces por semana</option>
+            <option value="No">1 vez por semana</option>
           </select>
         </div>
         <div className="form-groupll">
@@ -401,7 +402,7 @@ const Form4 = () => {
           />
         </div>
         <div className='button-container'>
-          <button type='button' className='sig_btn' onClick={buttonatras}>Atras</button>
+          <button type='button' className='sig_btn' onClick={buttonatras}>Atrás</button>
           <button type='submit' className='sig_btn'>Terminar</button>
 
         </div>

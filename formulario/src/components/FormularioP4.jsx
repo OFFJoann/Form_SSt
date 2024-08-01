@@ -108,8 +108,18 @@ const Form4 = () => {
     e.preventDefault();
 
     localStorage.setItem('formData4', JSON.stringify(dataForm4));
-    const storedFormData = JSON.parse(localStorage.getItem('formData3')) || {};
-    const finalData = { ...storedFormData, ...dataForm4 };
+    const storedFormData1 = JSON.parse(localStorage.getItem('formData')) || {};
+    const storedFormData2 = JSON.parse(localStorage.getItem('formData2')) || {};
+    const storedFormData3 = JSON.parse(localStorage.getItem('formData3')) || {};
+    const storedFormData4 = JSON.parse(localStorage.getItem('formData4')) || {};
+
+    const finalData = {
+      ...storedFormData1,
+      ...storedFormData2,
+      ...storedFormData3,
+      ...storedFormData4 
+    };
+    console.log(finalData)
 
     const { customHeader, ...data } = finalData;
     const headers = customHeader ? { 'Custom-Header': customHeader } : {};
@@ -126,7 +136,6 @@ const Form4 = () => {
   };
 
   const buttonatras = async (e) => {
-    localStorage.setItem('formData4', JSON.stringify(dataForm4));
     history.push("/form3");
   };
 

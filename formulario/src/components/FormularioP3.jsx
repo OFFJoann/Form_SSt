@@ -81,8 +81,7 @@ const Form3 = () => {
     const handleSubmitform3 = async (e) => {
         e.preventDefault();
         
-        const storedFormData = JSON.parse(localStorage.getItem('formData2'));
-        localStorage.setItem('formData3', JSON.stringify({ ...storedFormData, ...dataForm3 }));
+        localStorage.setItem('formData3', JSON.stringify(dataForm3));
         history.push('/Form4');
     };
 

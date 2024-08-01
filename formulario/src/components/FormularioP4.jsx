@@ -119,18 +119,36 @@ const Form4 = () => {
       ...storedFormData3,
       ...storedFormData4 
     };
-    console.log(finalData)
 
     const { customHeader, ...data } = finalData;
     const headers = customHeader ? { 'Custom-Header': customHeader } : {};
 
     try {
-      const response = await EnviarDatos(data, headers);
-      console.log("Datos enviados", response)
-      setModalOpen(true);
+        const response = await EnviarDatos(data, headers);
+        console.log(response);
+        localStorage.clear();
+        setdataForm4({
+            enfermedad: '',
+            espicifique_enfermedad: '',
+            tratamiento: '',
+            medicamento: '',
+            controlMedico: '',
+            alergia_medicamento: '',
+            cualalergia_medicamento: '',
+            medioTrans: '',
+            tiempoTrans: '',
+            nomEmg: '',
+            parentEmg: '',
+            celEmg: '',
+            fumador: '',
+            bebidas_Alcoholicas: '',
+            actividad_Fisica: '',
+            frecuencia_ActFisica: '',
+        });
+        setModalOpen(true);
     } catch (error) {
-      console.error('Error:', error.message);
-      setModalOpenerror(true);
+        console.error('Error:', error.message);
+        setModalOpenerror(true);
     }
 
   };

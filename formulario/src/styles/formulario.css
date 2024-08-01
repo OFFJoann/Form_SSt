@@ -1,6 +1,6 @@
 /* Formulario.css */
 .formulario {
-    max-width: 1290px;
+    max-width: 1300px;
     margin: 30px auto;
     padding: 20px;
     border-radius: 30px;
@@ -39,6 +39,7 @@
     width: 250px;
   }
 
+
   .form-groupll label {
     display: block;
     margin-bottom: 5px;
@@ -55,7 +56,21 @@
     box-sizing: border-box;
     outline: none;
     border-color: #ccc;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    transition: border-color 0.4s ease,
+                box-shadow 0.3s ease, 
+                background-color 0.5s ease;
+  }
+
+  .form-groupll input:hover{
+    border-color: #f5b1b1;  /* Color del borde al hacer hover */
+    box-shadow: 4px 4px 8px rgba(255, 25, 25, 0.4);  /* Sombra suave */
+  }
+
+  .form-groupll input:focus{
+    border-color: #f5b1b1;  /* Color del borde al hacer focus */
+    box-shadow: 0 4px 8px rgba(255, 25, 25, 0.4);  /* Sombra suave */
+    outline: none;  /* Quitar el borde por defecto de focus */
+    background-color: #f0f8ff;  /* Color de fondo cuando está enfocado */
   }
 
   .form-groupll select {
@@ -64,6 +79,11 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    transition: border-color 0.4s ease,
+                box-shadow 0.3s ease, 
+                background-color 0.5s ease;
+    appearance: none;
+    
   }
 
 
@@ -84,7 +104,21 @@
     box-sizing: border-box;
     outline: none;
     border-color: #ccc;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    transition: border-color 0.4s ease,
+                box-shadow 0.3s ease, 
+                background-color 0.5s ease;
+  }
+
+  .form-group input:hover{
+    border-color: #f5b1b1;  /* Color del borde al hacer hover */
+    box-shadow: 4px 4px 8px rgba(255, 25, 25, 0.4);  /* Sombra suave */
+  }
+
+  .form-group input:focus{
+    border-color: #f5b1b1;  /* Color del borde al hacer focus */
+    box-shadow: 0 4px 8px rgba(255, 25, 25, 0.4);  /* Sombra suave */
+    outline: none;  /* Quitar el borde por defecto de focus */
+    background-color: #f0f8ff;  /* Color de fondo cuando está enfocado */
   }
 
   .form-group select {
@@ -93,6 +127,34 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    transition: border-color 0.4s ease,
+                box-shadow 0.3s ease, 
+                background-color 0.5s ease;
+    appearance: none;
+  }
+
+  .form-groupll select:hover{
+    border-color: #f5b1b1;  /* Color del borde al hacer hover */
+    box-shadow: 4px 4px 8px rgba(255, 25, 25, 0.4);  /* Sombra suave */
+  }
+
+  .form-groupll select:focus{
+    border-color: #f5b1b1;  /* Color del borde al hacer focus */
+    box-shadow: 0 4px 8px rgba(255, 25, 25, 0.4);  /* Sombra suave */
+    outline: none;  /* Quitar el borde por defecto de focus */
+    background-color: #f0f8ff;  /* Color de fondo cuando está enfocado */
+  }
+
+  .form-group select:hover{
+    border-color: #f5b1b1;  /* Color del borde al hacer hover */
+    box-shadow: 4px 4px 8px rgba(255, 25, 25, 0.4);  /* Sombra suave */
+  }
+
+  .form-group select:focus{
+    border-color: #f5b1b1;  /* Color del borde al hacer focus */
+    box-shadow: 0 4px 8px rgba(255, 25, 25, 0.4);  /* Sombra suave */
+    outline: none;  /* Quitar el borde por defecto de focus */
+    background-color: #f0f8ff;  /* Color de fondo cuando está enfocado */
   }
 
 
@@ -141,6 +203,7 @@
 .table {
   margin-top: 4%;
   width: 100%;
+  padding: 0;
 }
 
 .table th,
@@ -158,11 +221,11 @@
 
 .table .td_thspecial,
 .table .td_thspecial {
-  padding: 10px; /* Espaciado interno de las celdas */
+  padding: 5px; /* Espaciado interno de las celdas */
   text-align: center; /* Alineación del texto al centro */
-  border: 1px solid #dddcdc;
+  border: 1px solid #d4d3d3;
   border-radius: 10px 10px 10px 10px;
-  width: 90px; /* Ancho fijo para las celdas */
+  width: 60px; /* Ancho fijo para las celdas */
   white-space: nowrap; /* Evitar salto de línea */
   overflow: hidden; /* Ocultar el contenido que desborda */
   text-overflow: ellipsis; /* Mostrar puntos suspensivos cuando el texto desborda */

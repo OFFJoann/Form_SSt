@@ -26,7 +26,7 @@ const Finisherror = ({ onClose }) => {
           <div className="modal-content">
             <img src={Check} alt="Alert" width="40px" />
             <h1>¡ERROR AL ENVIAR DATOS!</h1>
-            <p>Comunica este error al area de gestion humana</p>
+            <p>Comunica este error al área de gestión humana</p>
             <button onClick={handleCloseModal}>Aceptar</button>
           </div>
         </div>

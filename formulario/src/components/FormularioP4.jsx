@@ -136,6 +136,7 @@ const Form4 = () => {
   };
 
   const buttonatras = async (e) => {
+    localStorage.setItem('formData4', JSON.stringify(dataForm4));
     history.push("/form3");
   };
 
@@ -299,9 +300,9 @@ const Form4 = () => {
             autoComplete="off"
           >
             <option value="" disabled hidden>Seleccione</option>
-            <option value="Si">Todos los días</option>
-            <option value="No">3 veces por semana</option>
-            <option value="No">1 vez por semana</option>
+            <option value="Todos los días">Todos los días</option>
+            <option value="3 veces por semana">3 veces por semana</option>
+            <option value="1 vez por semana">1 vez por semana</option>
           </select>
         </div>
         <div className="form-groupll">

@@ -15,7 +15,7 @@ export const Obtenerdatos = async () => {
 };
 
 
-const ApiURL = 'http://192.168.1.46:8000/procesar_informacion';
+const ApiURL = 'http://192.168.7.185:2375/api/personas/createOrUpdate';
 
 export const EnviarDatos = async (data, headers) => {
     try {
@@ -42,7 +42,5 @@ export const EnviarDatos = async (data, headers) => {
 
         return responseData;
     } catch (error) {
-        console.error('No se pudo enviar data a la API:', error);
-        throw error;
     }
 };
